@@ -5,14 +5,14 @@
 
 using namespace Rcpp;
 
-// lint_wkt
-DataFrame lint_wkt(CharacterVector wkt);
-RcppExport SEXP wicket_lint_wkt(SEXP wktSEXP) {
+// type_works
+bool type_works(std::string x);
+RcppExport SEXP wicket_type_works(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< CharacterVector >::type wkt(wktSEXP);
-    rcpp_result_gen = Rcpp::wrap(lint_wkt(wkt));
+    Rcpp::traits::input_parameter< std::string >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(type_works(x));
     return rcpp_result_gen;
 END_RCPP
 }
