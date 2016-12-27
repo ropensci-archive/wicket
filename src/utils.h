@@ -26,5 +26,7 @@ namespace wkt_utils {
   void split_elements(std::string& wkt_obj, std::deque < std::string >& output, std::string delim);
 
   bool check_digit(std::string& x);
+
+  std::string to_string(unsigned int x);
 };
 #endif

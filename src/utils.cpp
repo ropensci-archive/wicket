@@ -18,7 +18,6 @@ void wkt_utils::clean_wkt(std::string& x){
   }
 }
 
-
 wkt_utils::supported_types wkt_utils::hash_type(std::string type){
   if(type == "point"){
     return point;
@@ -57,16 +56,15 @@ wkt_utils::supported_types wkt_utils::id_type(std::string& wkt_obj){
   return output;
 }
 
-
 void wkt_utils::split_elements(std::string& wkt_obj, std::deque < std::string >& output, std::string delim){
 
   size_t first = 0;
-  size_t last = wkt_obj.find_first_of(delim);
+  size_t last = wkt_obj.find(delim);
 
   while(last != std::string::npos){
     output.push_back(wkt_obj.substr(first, (last - first)));
     first = ++last;
-    last = wkt_obj.find_first_of(delim, last);
+    last = wkt_obj.find(delim, last);
 
     if(last == std::string::npos){
       output.push_back(wkt_obj.substr(first, wkt_obj.size()));
@@ -74,6 +72,11 @@ void wkt_utils::split_elements(std::string& wkt_obj, std::deque < std::string >&
   }
 }
 
+std::string wkt_utils::to_string(unsigned int i){
+  std::ostringstream ss;
+  ss << i;
+  return ss.str();
+}
 bool wkt_utils::check_digit(std::string& x){
 
   bool has_p = false;
