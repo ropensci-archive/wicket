@@ -27,3 +27,14 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// validate_wkt
+DataFrame validate_wkt(CharacterVector wkt);
+RcppExport SEXP wicket_validate_wkt(SEXP wktSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< CharacterVector >::type wkt(wktSEXP);
+    rcpp_result_gen = Rcpp::wrap(validate_wkt(wkt));
+    return rcpp_result_gen;
+END_RCPP
+}

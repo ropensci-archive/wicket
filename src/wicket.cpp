@@ -43,7 +43,7 @@ DataFrame lint_point(CharacterVector x){
 
 
 //[[Rcpp::export]]
-DataFrame lint_wkt(CharacterVector wkt){
+DataFrame validate_wkt(CharacterVector wkt){
 
   unsigned int input_size = wkt.size();
   CharacterVector output_rationale(input_size);

@@ -9,3 +9,7 @@ lint_point <- function(x) {
     .Call('wicket_lint_point', PACKAGE = 'wicket', x)
 }
 
+validate_wkt <- function(wkt) {
+    .Call('wicket_validate_wkt', PACKAGE = 'wicket', wkt)
+}
+
