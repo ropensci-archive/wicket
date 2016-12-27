@@ -48,11 +48,48 @@ wkt_utils::supported_types wkt_utils::id_type(std::string& wkt_obj){
   wkt_utils::clean_wkt(wkt_obj);
 
   // Split out type
-  size_t type_loc = wkt_obj.find("(");
+  size_t type_loc = wkt_obj.find_first_of(" (");
   if(type_loc == std::string::npos || type_loc == wkt_obj.size()){
     return wkt_utils::unsupported_type;
   }
   wkt_utils::supported_types output = wkt_utils::hash_type(wkt_obj.substr(0, type_loc));
   wkt_obj = wkt_obj.substr(type_loc+1);
   return output;
+}
+
+
+void wkt_utils::split_elements(std::string& wkt_obj, std::deque < std::string >& output, std::string delim){
+
+  size_t first = 0;
+  size_t last = wkt_obj.find_first_of(delim);
+
+  while(last != std::string::npos){
+    output.push_back(wkt_obj.substr(first, (last - first)));
+    first = ++last;
+    last = wkt_obj.find_first_of(delim, last);
+
+    if(last == std::string::npos){
+      output.push_back(wkt_obj.substr(first, wkt_obj.size()));
+    }
+  }
+}
+
+bool wkt_utils::check_digit(std::string& x){
+
+  bool has_p = false;
+
+  for(unsigned int i = 0; i < x.size(); i++){
+
+    if(!isdigit(x[i])){
+      if(x[i] == '.'){
+        if(has_p){
+          return false;
+        }
+        has_p = true;
+      } else {
+        return false;
+      }
+    }
+  }
+  return true;
 }

@@ -22,5 +22,9 @@ namespace wkt_utils {
   supported_types hash_type(std::string type);
 
   supported_types id_type(std::string& wkt_obj);
+
+  void split_elements(std::string& wkt_obj, std::deque < std::string >& output, std::string delim);
+
+  bool check_digit(std::string& x);
 };
 #endif

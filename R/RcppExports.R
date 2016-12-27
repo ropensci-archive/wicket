@@ -5,3 +5,7 @@ type_works <- function(x) {
     .Call('wicket_type_works', PACKAGE = 'wicket', x)
 }
 
+lint_point <- function(x) {
+    .Call('wicket_lint_point', PACKAGE = 'wicket', x)
+}
+
