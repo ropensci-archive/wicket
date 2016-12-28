@@ -31,8 +31,13 @@ namespace wkt_parser {
   };
 
   namespace multipoint_parser {
-
-  CharacterVector lint_wkt(std::string wkt);
+    //A multipoint object should consist of:
+    //* Any number of coordinate *pairs*
+    //* Stored as numeric values
+    //* Separated into pairs by a comma,
+    //* Separated by a space
+    //* Optionally with braces around each pair.
+    void validate_wkt(std::string& wkt, String& rationale, bool& result);
 
   };
 

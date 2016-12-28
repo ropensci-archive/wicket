@@ -16,3 +16,14 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// test_erase
+std::string test_erase(std::string x);
+RcppExport SEXP wicket_test_erase(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(test_erase(x));
+    return rcpp_result_gen;
+END_RCPP
+}

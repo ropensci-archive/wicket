@@ -18,6 +18,14 @@ void wkt_utils::clean_wkt(std::string& x){
   }
 }
 
+void wkt_utils::strip_braces(std::string& x){
+  size_t brace_loc = x.find_first_of("()");
+  while(brace_loc != std::string::npos){
+    x.erase(brace_loc, 1);
+    brace_loc = x.find_first_of("()");
+  }
+}
+
 wkt_utils::supported_types wkt_utils::hash_type(std::string type){
   if(type == "point"){
     return point;

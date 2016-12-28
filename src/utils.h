@@ -9,6 +9,8 @@ namespace wkt_utils {
 
   void clean_wkt(std::string& x);
 
+  void strip_braces(std::string& x);
+
   enum supported_types {
     point,
     multi_point,

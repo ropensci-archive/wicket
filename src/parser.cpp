@@ -63,3 +63,25 @@ void wkt_parser::linestring_parser::validate_wkt(std::string& wkt,
     }
   }
 }
+
+void wkt_parser::multipoint_parser::validate_wkt(std::string& wkt,
+                                                 String& rationale, bool& result){
+  bool alter = false;
+  wkt_parser::check_braces(wkt, rationale, result, alter);
+  if(!alter){
+    wkt_utils::strip_braces(wkt);
+    std::deque < std::string > holding;
+    wkt_utils::split_elements(wkt, holding, ",");
+    for(unsigned int i = 0; i < holding.size(); i++){
+      wkt_utils::clean_wkt(holding[i]);
+      wkt_parser::check_pointpair(holding[i], rationale, result, alter);
+      if(alter){
+        break;
+      }
+    }
+    if(!alter){
+      result = true;
+      rationale = NA_STRING;
+    }
+  }
+}

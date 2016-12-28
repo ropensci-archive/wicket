@@ -5,3 +5,7 @@ validate_wkt <- function(wkt) {
     .Call('wicket_validate_wkt', PACKAGE = 'wicket', wkt)
 }
 
+test_erase <- function(x) {
+    .Call('wicket_test_erase', PACKAGE = 'wicket', x)
+}
+
