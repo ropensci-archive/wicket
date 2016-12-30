@@ -16,3 +16,15 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// wkt_bounding
+SEXP wkt_bounding(CharacterVector wkt, bool as_matrix);
+RcppExport SEXP wicket_wkt_bounding(SEXP wktSEXP, SEXP as_matrixSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< CharacterVector >::type wkt(wktSEXP);
+    Rcpp::traits::input_parameter< bool >::type as_matrix(as_matrixSEXP);
+    rcpp_result_gen = Rcpp::wrap(wkt_bounding(wkt, as_matrix));
+    return rcpp_result_gen;
+END_RCPP
+}
