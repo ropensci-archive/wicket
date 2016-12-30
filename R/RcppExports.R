@@ -5,6 +5,10 @@ bounding_wkt_points <- function(min_x, max_x, min_y, max_y) {
     .Call('wicket_bounding_wkt_points', PACKAGE = 'wicket', min_x, max_x, min_y, max_y)
 }
 
+bounding_wkt_list <- function(x) {
+    .Call('wicket_bounding_wkt_list', PACKAGE = 'wicket', x)
+}
+
 #'@title Validate WKT objects
 #'@description \code{validate_wkt} takes a vector of WKT objects and validates that
 #'they are parsable, returning a data.frame containing the status of each entry and

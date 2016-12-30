@@ -19,6 +19,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// bounding_wkt_list
+CharacterVector bounding_wkt_list(List x);
+RcppExport SEXP wicket_bounding_wkt_list(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< List >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(bounding_wkt_list(x));
+    return rcpp_result_gen;
+END_RCPP
+}
 // validate_wkt
 DataFrame validate_wkt(CharacterVector x);
 RcppExport SEXP wicket_validate_wkt(SEXP xSEXP) {
