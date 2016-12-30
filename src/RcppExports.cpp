@@ -5,6 +5,20 @@
 
 using namespace Rcpp;
 
+// bounding_wkt_points
+CharacterVector bounding_wkt_points(NumericVector min_x, NumericVector max_x, NumericVector min_y, NumericVector max_y);
+RcppExport SEXP wicket_bounding_wkt_points(SEXP min_xSEXP, SEXP max_xSEXP, SEXP min_ySEXP, SEXP max_ySEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type min_x(min_xSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type max_x(max_xSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type min_y(min_ySEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type max_y(max_ySEXP);
+    rcpp_result_gen = Rcpp::wrap(bounding_wkt_points(min_x, max_x, min_y, max_y));
+    return rcpp_result_gen;
+END_RCPP
+}
 // validate_wkt
 DataFrame validate_wkt(CharacterVector x);
 RcppExport SEXP wicket_validate_wkt(SEXP xSEXP) {
