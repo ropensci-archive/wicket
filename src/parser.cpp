@@ -1,7 +1,6 @@
 #include "parser.h"
 
-void wkt_parser::check_pointpair(std::string& pointpair, String& rationale,
-                                 bool& result, bool& alter){
+void wkt_parser::check_pointpair(std::string& pointpair, String& rationale, bool& result, bool& alter){
   std::deque < std::string > holding;
   wkt_utils::split_elements(pointpair, holding, " ");
   if(holding.size() == 2){
@@ -17,8 +16,7 @@ void wkt_parser::check_pointpair(std::string& pointpair, String& rationale,
   }
 }
 
-void wkt_parser::check_braces(std::string& wkt_obj, String& rationale, bool& result,
-                              bool& alter){
+void wkt_parser::check_braces(std::string& wkt_obj, String& rationale, bool& result, bool& alter){
   if(wkt_obj[0] != '(' | wkt_obj[wkt_obj.size()-1] != ')'){
     result = false;
     rationale = "WKT objects are expected to have braces around the set(s) of coordinates";
@@ -42,8 +40,14 @@ void wkt_parser::point_parser::validate_wkt(std::string& wkt, String& rationale,
   }
 }
 
-void wkt_parser::linestring_parser::validate_wkt(std::string& wkt,
-                                                 String& rationale, bool& result){
+void split_multi(std::string& wkt_obj, std::deque <std::string>& output, String& rationale, bool& result, bool& alter){
+  //(10 10, 20 20, 10 40), (40 40, 30 30, 40 20, 30 10)
+  wkt_parser::check_braces(wkt_obj, rationale, result, alter);
+  if(!alter){
+
+  }
+}
+void wkt_parser::linestring_parser::validate_wkt(std::string& wkt, String& rationale, bool& result){
 
   bool alter = false;
   wkt_parser::check_braces(wkt, rationale, result, alter);
@@ -64,8 +68,7 @@ void wkt_parser::linestring_parser::validate_wkt(std::string& wkt,
   }
 }
 
-void wkt_parser::multipoint_parser::validate_wkt(std::string& wkt,
-                                                 String& rationale, bool& result){
+void wkt_parser::multipoint_parser::validate_wkt(std::string& wkt, String& rationale, bool& result){
   bool alter = false;
   wkt_parser::check_braces(wkt, rationale, result, alter);
   if(!alter){
@@ -84,4 +87,10 @@ void wkt_parser::multipoint_parser::validate_wkt(std::string& wkt,
       rationale = NA_STRING;
     }
   }
+}
+
+void wkt_parser::multilinestring_parser::validate_wkt(std::string& wkt, String& rationale, bool& result){
+  bool alter = false;
+  std::deque < std::string > holding;
+
 }

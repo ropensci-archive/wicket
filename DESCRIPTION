@@ -1,12 +1,17 @@
 Package: wicket
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Foo Bar Baz
 Version: 0.1.0
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Author: Oliver Keyes [aut, cre]
+Maintainer: Oliver Keyes <ironholds@gmail.com>
+Description: Testy test test
+License: MIT + LICENSE
 LazyData: TRUE
-LinkingTo: Rcpp
+LinkingTo:
+    Rcpp,
+    BH
 Imports:
-    Rcpp
+    Rcpp,
+    BH
 RoxygenNote: 5.0.1
+Suggests: testthat

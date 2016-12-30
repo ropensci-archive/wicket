@@ -12,13 +12,14 @@ namespace wkt_utils {
   void strip_braces(std::string& x);
 
   enum supported_types {
-    point,
-    multi_point,
-    line_string,
-    multi_line_string,
-    polygon,
-    geometry_collection,
-    unsupported_type,
+    point = 1,
+    multi_point = 2,
+    line_string = 3,
+    multi_line_string = 4,
+    polygon = 5,
+    geometry_collection = 6,
+    multi_polygon = 7,
+    unsupported_type = 8
   };
 
   supported_types hash_type(std::string type);

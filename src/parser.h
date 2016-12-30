@@ -11,6 +11,8 @@ namespace wkt_parser {
 
   void check_braces(std::string& wkt_obj, String& rationale, bool& result, bool& alter);
 
+  void split_multi(std::string& wkt_obj, std::deque <std::string>& output, String& rationale, bool& result, bool& alter);
+
   namespace point_parser {
 
     //A point object should consist of:
@@ -41,6 +43,13 @@ namespace wkt_parser {
 
   };
 
+  namespace multilinestring_parser {
+  //A multilinestring object should consist of:
+  //* Any number of linestring objects,
+  //* Separated by braces
+  void validate_wkt(std::string& wkt, String& rationale, bool& result);
+
+  };
 };
 
 #endif

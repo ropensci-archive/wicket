@@ -42,6 +42,9 @@ wkt_utils::supported_types wkt_utils::hash_type(std::string type){
   if(type == "polygon"){
     return polygon;
   }
+  if(type == "multipolygon"){
+    return multi_polygon;
+  }
   if(type == "geometrycollection"){
     return geometry_collection;
   }
@@ -59,9 +62,8 @@ wkt_utils::supported_types wkt_utils::id_type(std::string& wkt_obj){
   if(type_loc == std::string::npos || type_loc == wkt_obj.size()){
     return wkt_utils::unsupported_type;
   }
-  wkt_utils::supported_types output = wkt_utils::hash_type(wkt_obj.substr(0, type_loc));
-  wkt_obj = wkt_obj.substr(type_loc+1);
-  return output;
+
+  return wkt_utils::hash_type(wkt_obj.substr(0, type_loc));
 }
 
 void wkt_utils::split_elements(std::string& wkt_obj, std::deque < std::string >& output, std::string delim){
