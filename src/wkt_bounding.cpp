@@ -183,6 +183,8 @@ DataFrame wkt_bounding_df(CharacterVector& wkt){
 //'@examples
 //'wkt_bounding("POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))")
 //'
+//'@seealso \code{\link{bounding_wkt}}, to turn R-size bounding boxes into WKT objects.
+//'
 //'@export
 //[[Rcpp::export]]
 SEXP wkt_bounding(CharacterVector wkt, bool as_matrix = false){

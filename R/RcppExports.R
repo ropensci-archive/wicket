@@ -45,6 +45,8 @@ validate_wkt <- function(x) {
 #'@examples
 #'wkt_bounding("POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))")
 #'
+#'@seealso \code{\link{bounding_wkt}}, to turn R-size bounding boxes into WKT objects.
+#'
 #'@export
 wkt_bounding <- function(wkt, as_matrix = FALSE) {
     .Call('wicket_wkt_bounding', PACKAGE = 'wicket', wkt, as_matrix)

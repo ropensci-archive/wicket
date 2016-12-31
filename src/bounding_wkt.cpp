@@ -20,10 +20,11 @@ CharacterVector bounding_wkt_points(NumericVector min_x, NumericVector max_x, Nu
     if((i % 10000) == 0){
       Rcpp::checkUserInterrupt();
     }
-    if(min_x[i] == NA_REAL || max_x[i] == NA_REAL || min_y[i] == NA_REAL || max_y[i] == NA_REAL){
+    if(NumericVector::is_na(min_x[i]) || NumericVector::is_na(max_x[i]) ||
+       NumericVector::is_na(min_y[i]) || NumericVector::is_na(max_y[i])){
       output[i] = NA_STRING;
     } else {
-      bx = boost::geometry::make<box_type>(min_x[i], max_x[i], min_y[i], max_y[i]);
+      bx = boost::geometry::make<box_type>(min_x[i], min_y[i], max_x[i], max_y[i]);
       boost::geometry::convert(bx, poly);
       std::stringstream ss;
       ss << boost::geometry::wkt(poly);
@@ -51,11 +52,11 @@ CharacterVector bounding_wkt_list(List x){
     } catch(...){
       output[i] = NA_STRING;
     }
-    if(holding.size() != 4 || holding[0] == NA_REAL || holding[1] == NA_REAL ||
-      holding[2] == NA_REAL || holding[3] == NA_REAL){
+    if(holding.size() != 4 || NumericVector::is_na(holding[0]) || NumericVector::is_na(holding[1]) ||
+      NumericVector::is_na(holding[2]) || NumericVector::is_na(holding[3])){
       output[i] = NA_STRING;
     } else {
-      bx = boost::geometry::make<box_type>(holding[0], holding[1], holding[2], holding[3]);
+      bx = boost::geometry::make<box_type>(holding[0], holding[2], holding[1], holding[3]);
       boost::geometry::convert(bx, poly);
       std::stringstream ss;
       ss << boost::geometry::wkt(poly);
