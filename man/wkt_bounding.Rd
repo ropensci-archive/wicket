@@ -14,7 +14,7 @@ to FALSE by default.}
 }
 \value{
 either a data.frame or matrix, depending on the value of \code{as_matrix}, containing
-four columns - \code{min_x}, \code{max_x}, \code{min_y} and \code{max_y} - representing the
+four columns - \code{min_x}, \code{min_y}, \code{max_x} and \code{max_y} - representing the
 various points of the bounding box. In the event that a valid bounding box cannot be generated
 (due to the invalidity or incompatibility of the WKT object), NAs will be returned.
 }
@@ -26,5 +26,8 @@ into bounding boxes.
 \examples{
 wkt_bounding("POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))")
 
+}
+\seealso{
+\code{\link{bounding_wkt}}, to turn R-size bounding boxes into WKT objects.
 }
 

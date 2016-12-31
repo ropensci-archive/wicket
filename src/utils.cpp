@@ -66,6 +66,38 @@ wkt_utils::supported_types wkt_utils::id_type(std::string& wkt_obj){
   return wkt_utils::hash_type(wkt_obj.substr(0, type_loc));
 }
 
+void wkt_utils::split_gc(std::string& wkt_obj, std::deque < std::string >& output){
+
+  bool last_alpha = false;
+  unsigned int input_size = wkt_obj.size();
+  size_t point = std::string::npos;
+
+  for(signed int i = input_size; i >= 0; i--){
+    if(isalpha(wkt_obj[i])){
+      if(!last_alpha){
+        last_alpha = true;
+      }
+    } else {
+      if(last_alpha){
+        output.push_back(wkt_obj.substr(i+1, (point - i)));
+        last_alpha = false;
+        point = i;
+      }
+    }
+  }
+
+  size_t brace_point;
+  if(output.size() > 0){
+    output[0] = output[0].erase(output[0].size()-1);
+    for(unsigned int i = 0; i < output.size(); i++){
+      brace_point = output[i].find_last_of(")");
+      if(brace_point != std::string::npos && brace_point != (output[i].size() - 1)){
+        output[i] = output[i].erase(brace_point+1);
+      }
+    }
+  }
+}
+
 void wkt_utils::split_elements(std::string& wkt_obj, std::deque < std::string >& output, std::string delim){
 
   size_t first = 0;

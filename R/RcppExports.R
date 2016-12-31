@@ -27,6 +27,10 @@ validate_wkt <- function(x) {
     .Call('wicket_validate_wkt', PACKAGE = 'wicket', x)
 }
 
+test <- function(x) {
+    .Call('wicket_test', PACKAGE = 'wicket', x)
+}
+
 #'@title Convert WKT Objects into Bounding Boxes
 #'@description \code{\link{wkt_bounding}} turns WKT objects
 #'(specifically points, linestrings, polygons, and multi-points/linestrings/polygons)
@@ -38,7 +42,7 @@ validate_wkt <- function(x) {
 #'to FALSE by default.
 #'
 #'@return either a data.frame or matrix, depending on the value of \code{as_matrix}, containing
-#'four columns - \code{min_x}, \code{max_x}, \code{min_y} and \code{max_y} - representing the
+#'four columns - \code{min_x}, \code{min_y}, \code{max_x} and \code{max_y} - representing the
 #'various points of the bounding box. In the event that a valid bounding box cannot be generated
 #'(due to the invalidity or incompatibility of the WKT object), NAs will be returned.
 #'

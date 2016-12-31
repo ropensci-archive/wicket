@@ -18,8 +18,8 @@ void wkt_bounding_single_matrix(std::string wkt, T& obj, box_type& holding, unsi
   }
   holding = boost::geometry::return_envelope<box_type>(obj);
   output(i, 0) = holding.min_corner().get<0>();
-  output(i, 2) = holding.min_corner().get<1>();
-  output(i, 1) = holding.max_corner().get<0>();
+  output(i, 1) = holding.min_corner().get<1>();
+  output(i, 2) = holding.max_corner().get<0>();
   output(i, 3) = holding.max_corner().get<1>();
 }
 
@@ -76,7 +76,7 @@ NumericMatrix wkt_bounding_matrix(CharacterVector& wkt){
       }
     }
   }
-  colnames(output) = CharacterVector::create("min_x", "max_x", "min_y", "max_y");
+  colnames(output) = CharacterVector::create("min_x", "min_y", "max_x", "max_y");
   return output;
 }
 
@@ -160,8 +160,8 @@ DataFrame wkt_bounding_df(CharacterVector& wkt){
   }
 
   return DataFrame::create(_["min_x"] = min_x,
-                           _["max_x"] = max_x,
                            _["min_y"] = min_y,
+                           _["max_x"] = max_x,
                            _["max_y"] = max_y);
 }
 
@@ -176,7 +176,7 @@ DataFrame wkt_bounding_df(CharacterVector& wkt){
 //'to FALSE by default.
 //'
 //'@return either a data.frame or matrix, depending on the value of \code{as_matrix}, containing
-//'four columns - \code{min_x}, \code{max_x}, \code{min_y} and \code{max_y} - representing the
+//'four columns - \code{min_x}, \code{min_y}, \code{max_x} and \code{max_y} - representing the
 //'various points of the bounding box. In the event that a valid bounding box cannot be generated
 //'(due to the invalidity or incompatibility of the WKT object), NAs will be returned.
 //'
