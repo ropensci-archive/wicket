@@ -14,6 +14,85 @@ inline void validate_single(std::string& x, unsigned int& i, CharacterVector& co
   }
 }
 
+void validate_gc(std::string& x, unsigned int& i_sup, CharacterVector& com, LogicalVector& valid, std::deque <std::string>& gc){
+
+  bool has_failed = false;
+
+  clean_wkt(x);
+  split_gc(x, gc);
+
+  if(!gc.size()){
+    com[i_sup] = "No valid objects could be extracted from this GeometryCollection";
+    valid[i_sup] = false;
+    return;
+  }
+  Rcpp::print(Rcpp::wrap("fofdgfgo"));
+
+  // Create instances of each type
+  point_type pt;
+  linestring_type ls;
+  polygon_type poly;
+  multipoint_type multip;
+  multilinestring_type multil;
+  multipolygon_type multipoly;
+
+  for(unsigned int i = 0; i < gc.size(); i++){
+    if(has_failed){
+      break;
+    }
+
+    switch(id_type(gc[i])){
+    case point:
+      validate_single(gc[i], i_sup, com, valid, pt);
+      if(!valid[i]){
+        has_failed = true;
+      }
+      break;
+    case line_string:
+      validate_single(gc[i], i_sup, com, valid, ls);
+
+      if(!valid[i]){
+        has_failed = true;
+      }
+      break;
+    case polygon:
+      validate_single(gc[i], i_sup, com, valid, poly);
+      if(!valid[i]){
+        has_failed = true;
+      }
+      break;
+    case multi_point:
+      validate_single(gc[i], i_sup, com, valid, multip);
+      if(!valid[i]){
+        has_failed = true;
+      }
+      break;
+    case multi_line_string:
+      validate_single(gc[i], i_sup, com, valid, multil);
+      if(!valid[i]){
+        has_failed = true;
+      }
+      break;
+    case multi_polygon:
+      validate_single(gc[i], i_sup, com, valid, multipoly);
+      if(!valid[i]){
+        has_failed = true;
+      }
+      break;
+    case geometry_collection:
+      valid[i_sup] = false;
+      com[i_sup] = "GeometryCollections cannot be nested";
+      has_failed = true;
+      break;
+    default:
+      valid[i_sup] = false;
+      com[i_sup] = "A GeometryCollection member could not be recognised as a supported WKT type";
+      has_failed = true;
+
+    }
+  }
+}
+
 //'@title Validate WKT objects
 //'@description \code{validate_wkt} takes a vector of WKT objects and validates that
 //'they are parsable, returning a data.frame containing the status of each entry and
@@ -71,6 +150,8 @@ DataFrame validate_wkt(CharacterVector x){
           validate_single(holding, i, comments, is_valid, multipoly);
           break;
         case geometry_collection:
+          validate_gc(holding, i, comments, is_valid, gc_holding);
+          gc_holding.clear();
           break;
         default:
           is_valid[i] = false;
