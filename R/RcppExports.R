@@ -9,6 +9,10 @@ bounding_wkt_list <- function(x) {
     .Call('wicket_bounding_wkt_list', PACKAGE = 'wicket', x)
 }
 
+sp_convert <- function(x, group = TRUE) {
+    .Call('wicket_sp_convert', PACKAGE = 'wicket', x, group)
+}
+
 #'@title Validate WKT objects
 #'@description \code{validate_wkt} takes a vector of WKT objects and validates that
 #'they are parsable, returning a data.frame containing the status of each entry and
@@ -25,10 +29,6 @@ bounding_wkt_list <- function(x) {
 #'@export
 validate_wkt <- function(x) {
     .Call('wicket_validate_wkt', PACKAGE = 'wicket', x)
-}
-
-test <- function(x) {
-    .Call('wicket_test', PACKAGE = 'wicket', x)
 }
 
 #'@title Convert WKT Objects into Bounding Boxes

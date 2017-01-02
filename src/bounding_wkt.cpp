@@ -1,8 +1,8 @@
 #include <Rcpp.h>
 using namespace Rcpp;
-#include "def.h"
 #include "utils.h"
 using namespace wkt_utils;
+//[[Rcpp::depends(BH)]]
 
 //[[Rcpp::export]]
 CharacterVector bounding_wkt_points(NumericVector min_x, NumericVector max_x, NumericVector min_y, NumericVector max_y){
@@ -26,9 +26,7 @@ CharacterVector bounding_wkt_points(NumericVector min_x, NumericVector max_x, Nu
     } else {
       bx = boost::geometry::make<box_type>(min_x[i], min_y[i], max_x[i], max_y[i]);
       boost::geometry::convert(bx, poly);
-      std::stringstream ss;
-      ss << boost::geometry::wkt(poly);
-      output[i] = ss.str();
+      output[i] = wkt_utils::make_wkt_poly(poly);
     }
   }
   return output;

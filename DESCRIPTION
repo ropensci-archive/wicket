@@ -1,10 +1,11 @@
 Package: wicket
 Type: Package
-Title: Foo Bar Baz
+Title: Utilities to handle WKT ('Well-Known Text') spatial data
 Version: 0.1.0
 Author: Oliver Keyes [aut, cre]
 Maintainer: Oliver Keyes <ironholds@gmail.com>
-Description: Testy test test
+Description: Utilities to generate bounding boxes from WKT objects and R data types, validate
+             WKT objects and convert object types from the 'sp' package into WKT representations.
 License: MIT + LICENSE
 LazyData: TRUE
 LinkingTo:

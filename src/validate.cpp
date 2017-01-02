@@ -1,8 +1,7 @@
 #include <Rcpp.h>
-using namespace Rcpp;
-#include "def.h"
 #include "utils.h"
 using namespace wkt_utils;
+using namespace Rcpp;
 
 template <typename T>
 inline void validate_single(std::string& x, unsigned int& i, CharacterVector& com, LogicalVector& valid, T& p){

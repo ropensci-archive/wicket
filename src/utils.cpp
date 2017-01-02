@@ -119,6 +119,19 @@ std::string wkt_utils::to_string(unsigned int i){
   ss << i;
   return ss.str();
 }
+
+std::string wkt_utils::make_wkt_poly(polygon_type p){
+  std::stringstream ss;
+  ss << boost::geometry::wkt(p);
+  return ss.str();
+}
+
+std::string wkt_utils::make_wkt_multipoly(multipolygon_type p){
+  std::stringstream ss;
+  ss << boost::geometry::wkt(p);
+  return ss.str();
+}
+
 bool wkt_utils::check_digit(std::string& x){
 
   bool has_p = false;

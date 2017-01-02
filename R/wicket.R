@@ -35,16 +35,6 @@ bounding_wkt <- function(min_x, max_x, min_y, max_y, values = NULL){
   if(is.null(values)){
     return(bounding_wkt_points(min_x, max_x, min_y, max_y))
   }
-
-  if(is.data.frame(values)){
-    return(NULL)
-  }
-
-  if(is.matrix(values)){
-    return(NULL)
-  }
-
-  if(is.list(values)){
-    return(bounding_wkt_list(values))
-  }
+  stopifnot(is.list(values))
+  return(bounding_wkt_list(values))
 }

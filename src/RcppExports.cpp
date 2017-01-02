@@ -30,6 +30,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// sp_convert
+SEXP sp_convert(List x, bool group);
+RcppExport SEXP wicket_sp_convert(SEXP xSEXP, SEXP groupSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< List >::type x(xSEXP);
+    Rcpp::traits::input_parameter< bool >::type group(groupSEXP);
+    rcpp_result_gen = Rcpp::wrap(sp_convert(x, group));
+    return rcpp_result_gen;
+END_RCPP
+}
 // validate_wkt
 DataFrame validate_wkt(CharacterVector x);
 RcppExport SEXP wicket_validate_wkt(SEXP xSEXP) {
@@ -38,17 +50,6 @@ BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< CharacterVector >::type x(xSEXP);
     rcpp_result_gen = Rcpp::wrap(validate_wkt(x));
-    return rcpp_result_gen;
-END_RCPP
-}
-// test
-std::deque < std::string > test(std::string x);
-RcppExport SEXP wicket_test(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(test(x));
     return rcpp_result_gen;
 END_RCPP
 }
