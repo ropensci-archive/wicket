@@ -6,7 +6,7 @@ Author: Oliver Keyes [aut, cre]
 Maintainer: Oliver Keyes <ironholds@gmail.com>
 Description: Utilities to generate bounding boxes from WKT objects and R data types, validate
              WKT objects and convert object types from the 'sp' package into WKT representations.
-License: MIT + LICENSE
+License: MIT + file LICENSE
 LazyData: TRUE
 LinkingTo:
     Rcpp,
