@@ -9,8 +9,8 @@ bounding_wkt_list <- function(x) {
     .Call('wicket_bounding_wkt_list', PACKAGE = 'wicket', x)
 }
 
-sp_convert <- function(x, group = TRUE) {
-    .Call('wicket_sp_convert', PACKAGE = 'wicket', x, group)
+sp_convert_ <- function(x, group) {
+    .Call('wicket_sp_convert_', PACKAGE = 'wicket', x, group)
 }
 
 #'@title Validate WKT objects

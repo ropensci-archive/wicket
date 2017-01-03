@@ -1,15 +1,14 @@
 #include "utils.h"
 using namespace wkt_utils;
 
-String mat_poly(List x){
+String mat_poly(NumericMatrix x){
 
   polygon_type poly;
-  NumericMatrix holding = Rcpp::as<NumericMatrix>(x[0]);
-  if(holding.ncol() != 2){
+  if(x.ncol() != 2){
     return NA_STRING;
   }
-  for(unsigned int i = 0; i < holding.nrow(); i++){
-    boost::geometry::append(poly, point_type(holding(i,0), holding(i,1)));
+  for(unsigned int i = 0; i < x.nrow(); i++){
+    boost::geometry::append(poly, point_type(x(i,0), x(i,1)));
   }
 
   return wkt_utils::make_wkt_poly(poly);
@@ -19,15 +18,15 @@ String mat_poly(List x){
 String mat_multipoly(List x){
 
   multipolygon_type mpoly;
-  NumericMatrix holding;
+
   for(unsigned int i = 0; i < x.size(); i++){
     polygon_type poly;
-    holding = Rcpp::as<NumericMatrix>(x[i]);
+    NumericMatrix holding = Rcpp::as<NumericMatrix>(x[i]);
     if(holding.ncol() != 2){
       return NA_STRING;
     }
-    for(unsigned int j = 0; j < holding.nrow(); i++){
-      boost::geometry::append(poly, point_type(holding(i,0), holding(i,1)));
+    for(unsigned int j = 0; j < holding.nrow(); j++){
+      boost::geometry::append(poly, point_type(holding(j,0), holding(j,1)));
     }
     mpoly.push_back(poly);
   }
@@ -41,13 +40,12 @@ CharacterVector sp_convert_simplify(List x){
   unsigned int input_size = x.size();
   CharacterVector output(input_size);
   List holding;
-  for(unsigned int i = 0; i < x.size(); i++){
-
+  for(unsigned int i = 0; i < input_size; i++){
     holding = Rcpp::as<List>(x[i]);
     if(holding.size() > 1){
       output[i] = mat_multipoly(holding);
     } else {
-      output[i] = mat_poly(holding);
+      output[i] = mat_poly(Rcpp::as<NumericMatrix>(holding[0]));
     }
   }
   return output;
@@ -63,7 +61,7 @@ List sp_convert_complex(List x){
     holding = Rcpp::as<List>(x[i]);
     CharacterVector med(holding.size());
     for(unsigned int j = 0; j < holding.size(); j++){
-      med[j] = mat_poly(holding[j]);
+      med[j] = mat_poly(Rcpp::as<NumericMatrix>(holding[j]));
     }
     output[i] = med;
   }
@@ -72,7 +70,7 @@ List sp_convert_complex(List x){
 }
 
 //[[Rcpp::export]]
-SEXP sp_convert(List x, bool group = true){
+SEXP sp_convert_(List x, bool group){
   if(group){
     return(Rcpp::wrap(sp_convert_simplify(x)));
   }

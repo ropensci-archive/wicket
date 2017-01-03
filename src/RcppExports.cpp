@@ -30,15 +30,15 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// sp_convert
-SEXP sp_convert(List x, bool group);
-RcppExport SEXP wicket_sp_convert(SEXP xSEXP, SEXP groupSEXP) {
+// sp_convert_
+SEXP sp_convert_(List x, bool group);
+RcppExport SEXP wicket_sp_convert_(SEXP xSEXP, SEXP groupSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< List >::type x(xSEXP);
     Rcpp::traits::input_parameter< bool >::type group(groupSEXP);
-    rcpp_result_gen = Rcpp::wrap(sp_convert(x, group));
+    rcpp_result_gen = Rcpp::wrap(sp_convert_(x, group));
     return rcpp_result_gen;
 END_RCPP
 }
