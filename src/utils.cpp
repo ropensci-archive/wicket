@@ -18,14 +18,6 @@ void wkt_utils::clean_wkt(std::string& x){
   }
 }
 
-void wkt_utils::strip_braces(std::string& x){
-  size_t brace_loc = x.find_first_of("()");
-  while(brace_loc != std::string::npos){
-    x.erase(brace_loc, 1);
-    brace_loc = x.find_first_of("()");
-  }
-}
-
 wkt_utils::supported_types wkt_utils::hash_type(std::string type){
   if(type == "point"){
     return point;
@@ -98,28 +90,6 @@ void wkt_utils::split_gc(std::string& wkt_obj, std::deque < std::string >& outpu
   }
 }
 
-void wkt_utils::split_elements(std::string& wkt_obj, std::deque < std::string >& output, std::string delim){
-
-  size_t first = 0;
-  size_t last = wkt_obj.find(delim);
-
-  while(last != std::string::npos){
-    output.push_back(wkt_obj.substr(first, (last - first)));
-    first = ++last;
-    last = wkt_obj.find(delim, last);
-
-    if(last == std::string::npos){
-      output.push_back(wkt_obj.substr(first, wkt_obj.size()));
-    }
-  }
-}
-
-std::string wkt_utils::to_string(unsigned int i){
-  std::ostringstream ss;
-  ss << i;
-  return ss.str();
-}
-
 std::string wkt_utils::make_wkt_poly(polygon_type p){
   std::stringstream ss;
   ss << boost::geometry::wkt(p);
@@ -130,24 +100,4 @@ std::string wkt_utils::make_wkt_multipoly(multipolygon_type p){
   std::stringstream ss;
   ss << boost::geometry::wkt(p);
   return ss.str();
-}
-
-bool wkt_utils::check_digit(std::string& x){
-
-  bool has_p = false;
-
-  for(unsigned int i = 0; i < x.size(); i++){
-
-    if(!isdigit(x[i])){
-      if(x[i] == '.'){
-        if(has_p){
-          return false;
-        }
-        has_p = true;
-      } else {
-        return false;
-      }
-    }
-  }
-  return true;
 }
