@@ -21,4 +21,15 @@ they are parsable, returning a data.frame containing the status of each entry an
 (in the case it cannot be parsed) any comments as to what, in particular, may be
 wrong with it.
 }
+\examples{
+wkt <- c("POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))",
+        "ARGHLEFLARFDFG",
+        "LINESTRING (30 10, 10 90, 40 out of cheese error redo universe from start)")
+validate_wkt(wkt)
+
+}
+\seealso{
+\code{\link{sp_convert}} for generating valid WKT objects from SpatialPolygons
+and SpatialPolygonDataFrames.
+}
 

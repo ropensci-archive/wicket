@@ -26,6 +26,15 @@ sp_convert_ <- function(x, group) {
 #'in the case that the WKT object cannot be validated). If the objects are simply NA,
 #'both fields will contain NA.
 #'
+#'@seealso \code{\link{sp_convert}} for generating valid WKT objects from SpatialPolygons
+#'and SpatialPolygonDataFrames.
+#'
+#'@examples
+#'wkt <- c("POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))",
+#'         "ARGHLEFLARFDFG",
+#'         "LINESTRING (30 10, 10 90, 40 out of cheese error redo universe from start)")
+#'validate_wkt(wkt)
+#'
 #'@export
 validate_wkt <- function(x) {
     .Call('wicket_validate_wkt', PACKAGE = 'wicket', x)
