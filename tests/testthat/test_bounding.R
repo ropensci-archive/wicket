@@ -3,7 +3,7 @@ testthat::context("Test bounding box generation")
 testthat::test_that("Individual values can be turned into a bounding box", {
 
   result <- bounding_wkt(10, 12, 14, 16)
-  testthat::expect_equal(result, "POLYGON((10 14,10 16,12 16,12 14,10 14))")
+  testthat::expect_equal(result, "POLYGON((10 12,10 16,14 16,14 12,10 12))")
   testthat::expect_length(result, 1)
   testthat::expect_type(result, "character")
 })

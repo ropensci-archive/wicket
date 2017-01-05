@@ -25,7 +25,6 @@ void validate_gc(std::string& x, unsigned int& i_sup, CharacterVector& com, Logi
     valid[i_sup] = false;
     return;
   }
-  Rcpp::print(Rcpp::wrap("fofdgfgo"));
 
   // Create instances of each type
   point_type pt;

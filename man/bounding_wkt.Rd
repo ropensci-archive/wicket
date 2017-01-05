@@ -4,20 +4,21 @@
 \alias{bounding_wkt}
 \title{Generate Bounding Boxes}
 \usage{
-bounding_wkt(min_x, max_x, min_y, max_y, values = NULL)
+bounding_wkt(min_x, min_y, max_x, max_y, values = NULL)
 }
 \arguments{
 \item{min_x}{a numeric vector of the minimum value for \code{x} coordinates.}
 
-\item{max_x}{a numeric vector of the maximum value for \code{x} coordinates.}
-
 \item{min_y}{a numeric vector of the minimum value for \code{y} coordinates.}
+
+\item{max_x}{a numeric vector of the maximum value for \code{x} coordinates.}
 
 \item{max_y}{a numeric vector of the maximum value for \code{y} coordinates.}
 
 \item{values}{as an alternative to specifying the various values as vectors,
-a list of length-4 numeric vectors containing min and max x and y values.
-NULL (meaning that the other parameters will be expected) by default.}
+a list of length-4 numeric vectors containing min and max x and y values, or
+just a single vector fitting that spec. NULL (meaning that the other
+parameters will be expected) by default.}
 }
 \value{
 a character vector of WKT POLYGON objects
