@@ -47,6 +47,14 @@ bounding_wkt <- function(min_x, max_x, min_y, max_y, values = NULL){
   if(is.null(values)){
     return(bounding_wkt_points(min_x, max_x, min_y, max_y))
   }
-  stopifnot(is.list(values))
-  return(bounding_wkt_list(values))
+
+  if(is.list(values)){
+    return(bounding_wkt_list(values))
+  }
+
+  if(is.vector(values) && length(values) == 4){
+    return(bounding_wkt_list(list(values)))
+  }
+
+  stop("values must be NULL, a list or a length-4 vector")
 }
