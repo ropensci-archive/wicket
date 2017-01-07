@@ -54,7 +54,7 @@ CharacterVector bounding_wkt_list(List x){
       NumericVector::is_na(holding[2]) || NumericVector::is_na(holding[3])){
       output[i] = NA_STRING;
     } else {
-      bx = boost::geometry::make<box_type>(holding[0], holding[2], holding[1], holding[3]);
+      bx = boost::geometry::make<box_type>(holding[0], holding[1], holding[2], holding[3]);
       boost::geometry::convert(bx, poly);
       std::stringstream ss;
       ss << boost::geometry::wkt(poly);
