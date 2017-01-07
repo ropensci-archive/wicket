@@ -92,6 +92,23 @@ sp_convert(x = sp_object, group = FALSE)
 
 ```
 
+## Coordinate extraction
+WKT POLYGONs are often used to store latitude and longitude coordinates - and you can use `wkt_coords` to get them:
+
+```{r, eval=FALSE}
+wkt_coords(("POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))"))
+# [[1]]
+#    lon lat
+# 1  30  10
+# 2  40  40
+# 3  20  40
+# 4  10  20
+# 5  30  10
+```
+
+The result of a `wkt_coords` call is a list of data.frames - one for every WKT polygon you pass in - each containing
+a data.frame of `lon` and `lat` coordinates for each point within the polygon.
+
 ## New features and bugs
 
 If you've got ideas for other features - or have found something in the existing featureset that is broken - throw them on the GitHub issues page!

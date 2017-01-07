@@ -133,6 +133,9 @@ DataFrame validate_wkt(CharacterVector x){
   std::deque < std::string > gc_holding;
 
   for(unsigned int i = 0; i < input_size; i++){
+    if((i % 10000) == 0){
+      Rcpp::checkUserInterrupt();
+    }
     if(x[i] == NA_STRING){
       is_valid[i] = NA_LOGICAL;
     } else {

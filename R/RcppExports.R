@@ -65,3 +65,28 @@ wkt_bounding <- function(wkt, as_matrix = FALSE) {
     .Call('wicket_wkt_bounding', PACKAGE = 'wicket', wkt, as_matrix)
 }
 
+#'@title Extract Latitude and Longitude from WKT polygons
+#'@description \code{wkt_coords} extracts lat/long values from WKT polygons,
+#'specifically the outer shell of those polygons (working on the assumption that
+#'said outer edge is what you want).
+#'
+#'@param wkt a character vector of WKT objects
+#'
+#'@return a list of data.frames, one per WKT object. In the event that the
+#'WKT object cannot be decoded (or is not a POLYGON), a data.frame of NA values
+#'will be returned.
+#'
+#'@examples
+#'wkt_coords("POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))")
+#'#[[1]]
+#'#lon lat
+#'# 1  30  10
+#'# 2  40  40
+#'# 3  20  40
+#'# 4  10  20
+#'# 5  30  10
+#'@export
+wkt_coords <- function(wkt) {
+    .Call('wicket_wkt_coords', PACKAGE = 'wicket', wkt)
+}
+

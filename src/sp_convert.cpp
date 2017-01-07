@@ -41,6 +41,9 @@ CharacterVector sp_convert_simplify(List x){
   CharacterVector output(input_size);
   List holding;
   for(unsigned int i = 0; i < input_size; i++){
+    if((i % 10000) == 0){
+      Rcpp::checkUserInterrupt();
+    }
     holding = Rcpp::as<List>(x[i]);
     if(holding.size() > 1){
       output[i] = mat_multipoly(holding);
@@ -58,6 +61,9 @@ List sp_convert_complex(List x){
   List holding;
 
   for(unsigned int i = 0; i < input_size; i++){
+    if((i % 10000) == 0){
+      Rcpp::checkUserInterrupt();
+    }
     holding = Rcpp::as<List>(x[i]);
     CharacterVector med(holding.size());
     for(unsigned int j = 0; j < holding.size(); j++){
