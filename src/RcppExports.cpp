@@ -30,6 +30,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// get_centroid
+DataFrame get_centroid(CharacterVector wkt);
+RcppExport SEXP wicket_get_centroid(SEXP wktSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< CharacterVector >::type wkt(wktSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_centroid(wkt));
+    return rcpp_result_gen;
+END_RCPP
+}
 // sp_convert_
 SEXP sp_convert_(List x, bool group);
 RcppExport SEXP wicket_sp_convert_(SEXP xSEXP, SEXP groupSEXP) {
@@ -62,17 +73,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< CharacterVector >::type wkt(wktSEXP);
     Rcpp::traits::input_parameter< bool >::type as_matrix(as_matrixSEXP);
     rcpp_result_gen = Rcpp::wrap(wkt_bounding(wkt, as_matrix));
-    return rcpp_result_gen;
-END_RCPP
-}
-// wkt_coords
-List wkt_coords(CharacterVector wkt);
-RcppExport SEXP wicket_wkt_coords(SEXP wktSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< CharacterVector >::type wkt(wktSEXP);
-    rcpp_result_gen = Rcpp::wrap(wkt_coords(wkt));
     return rcpp_result_gen;
 END_RCPP
 }

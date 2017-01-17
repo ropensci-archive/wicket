@@ -101,3 +101,9 @@ std::string wkt_utils::make_wkt_multipoly(multipolygon_type p){
   ss << boost::geometry::wkt(p);
   return ss.str();
 }
+
+std::string wkt_utils::make_string(int i){
+  std::stringstream y;
+  y << i;
+  return y.str();
+}
