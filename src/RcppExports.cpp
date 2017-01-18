@@ -76,3 +76,14 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// wkt_coords
+DataFrame wkt_coords(CharacterVector wkt);
+RcppExport SEXP wicket_wkt_coords(SEXP wktSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< CharacterVector >::type wkt(wktSEXP);
+    rcpp_result_gen = Rcpp::wrap(wkt_coords(wkt));
+    return rcpp_result_gen;
+END_RCPP
+}

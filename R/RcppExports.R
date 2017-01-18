@@ -9,6 +9,22 @@ bounding_wkt_list <- function(x) {
     .Call('wicket_bounding_wkt_list', PACKAGE = 'wicket', x)
 }
 
+#'@title Extract Centroid
+#'@description \code{get_centroid} identifies the 2D centroid
+#'in a WKT object (or vector of WKT objects).
+#'
+#'@param wkt a character vector of WKT objects, represented as strings
+#'
+#'@return a data.frame of two columns, \code{lat} and \code{lng},
+#'with each row containing the centroid from the corresponding wkt
+#'object. In the case that the object is NA (or cannot be decoded)
+#'the resulting values will also be NA
+#'
+#'@examples
+#'get_centroid("POLYGON((2 1.3,2.4 1.7))")
+#'#  lat lng
+#'#1 1.3   2
+#'@export
 get_centroid <- function(wkt) {
     .Call('wicket_get_centroid', PACKAGE = 'wicket', wkt)
 }
@@ -67,5 +83,31 @@ validate_wkt <- function(x) {
 #'@export
 wkt_bounding <- function(wkt, as_matrix = FALSE) {
     .Call('wicket_wkt_bounding', PACKAGE = 'wicket', wkt, as_matrix)
+}
+
+#'@title Extract Latitude and Longitude from WKT polygons
+#'@description \code{wkt_coords} extracts lat/long values from WKT polygons,
+#'specifically the outer shell of those polygons (working on the assumption that
+#'said outer edge is what you want).
+#'
+#'@param wkt a character vector of WKT objects
+#'
+#'@return a data.frame of four columns; \code{object} (containing which object
+#'the row refers to), \code{ring} containing which layer of the object the row
+#'refers to, \code{lat} and \code{lng}.
+#'
+#'@examples
+#'wkt_coords("POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))")
+#'#[[1]]
+#'#lon lat
+#'#  object  ring lat lng
+#'#1      1 outer  10  30
+#'#2      1 outer  40  40
+#'#3      1 outer  40  20
+#'#4      1 outer  20  10
+#'#5      1 outer  10  30
+#'@export
+wkt_coords <- function(wkt) {
+    .Call('wicket_wkt_coords', PACKAGE = 'wicket', wkt)
 }
 

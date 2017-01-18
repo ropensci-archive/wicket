@@ -22,6 +22,22 @@ void centroid_single(std::string wkt, polygon_type& poly,
   lng[outlength]  = boost::geometry::get<0>(p);
 }
 
+//'@title Extract Centroid
+//'@description \code{get_centroid} identifies the 2D centroid
+//'in a WKT object (or vector of WKT objects).
+//'
+//'@param wkt a character vector of WKT objects, represented as strings
+//'
+//'@return a data.frame of two columns, \code{lat} and \code{lng},
+//'with each row containing the centroid from the corresponding wkt
+//'object. In the case that the object is NA (or cannot be decoded)
+//'the resulting values will also be NA
+//'
+//'@examples
+//'get_centroid("POLYGON((2 1.3,2.4 1.7))")
+//'#  lat lng
+//'#1 1.3   2
+//'@export
 //[[Rcpp::export]]
 DataFrame get_centroid(CharacterVector wkt){
 
