@@ -58,8 +58,8 @@ void extract_coords(polygon_type& p, unsigned int& outsize,
       for(unsigned int j = 0; j < x.outer().size(); j++){
         object[outsize] = obj;
         ring[outsize] = ring_id;
-        lat[outsize]  = boost::geometry::get<1>(points[j]);
-        lng[outsize]  = boost::geometry::get<0>(points[j]);
+        lat[outsize]  = boost::geometry::get<1>(x.outer()[j]);
+        lng[outsize]  = boost::geometry::get<0>(x.outer()[j]);
         outsize++;
       }
     }

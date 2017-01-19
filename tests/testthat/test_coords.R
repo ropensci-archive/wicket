@@ -29,3 +29,14 @@ testthat::test_that("non-objects are handled correctly", {
   testthat::expect_equal(result[1,1], 1)
   testthat::expect_equal(sum(is.na(result)), 3)
 })
+
+testthat::test_that("multi-layer polygons are handled correctly", {
+  p <- "POLYGON((-125 40.9, -125 38.4), (-115 22.4, -111.8 22.4))"
+  result <- wkt_coords(p)
+  expect_true(is.data.frame(result))
+  testthat::expect_length(result, 4)
+  testthat::expect_equal(nrow(result), 4)
+  testthat::expect_equal(result[1,1], 1)
+  testthat::expect_equal(result[3,2], "inner 1")
+  testthat::expect_equal(result[3,3], 22.4)
+})
