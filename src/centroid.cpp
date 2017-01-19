@@ -3,15 +3,16 @@ using namespace Rcpp;
 #include "utils.h"
 using namespace wkt_utils;
 
-void centroid_single(std::string wkt, polygon_type& poly,
+template <typename T>
+void centroid_single(std::string wkt, T& geom_obj,
                      unsigned int& outlength,
                      NumericVector& lat,
                      NumericVector& lng){
 
   point_type p;
   try{
-    boost::geometry::read_wkt(wkt, poly);
-    boost::geometry::centroid(poly, p);
+    boost::geometry::read_wkt(wkt, geom_obj);
+    boost::geometry::centroid(geom_obj, p);
   } catch(...){
     lat[outlength] = NA_REAL;
     lng[outlength] = NA_REAL;
@@ -41,7 +42,13 @@ void centroid_single(std::string wkt, polygon_type& poly,
 //[[Rcpp::export]]
 DataFrame get_centroid(CharacterVector wkt){
 
-  polygon_type p;
+  point_type pt;
+  linestring_type ls;
+  polygon_type poly;
+  multipoint_type multip;
+  multilinestring_type multil;
+  multipolygon_type multipoly;
+  std::string holding;
   unsigned int input_size = wkt.size();
   NumericVector lat(input_size);
   NumericVector lng(input_size);
@@ -54,7 +61,30 @@ DataFrame get_centroid(CharacterVector wkt){
       lat[i] = NA_REAL;
       lng[i] = NA_REAL;
     } else {
-      centroid_single(as<std::string>(wkt[i]), p, i, lat, lng);
+      holding = as<std::string>(wkt[i]);
+      switch(id_type(holding)){
+      case point:
+        centroid_single(holding, pt, i, lat, lng);
+        break;
+      case line_string:
+        centroid_single(holding, ls, i, lat, lng);
+        break;
+      case polygon:
+        centroid_single(holding, poly, i, lat, lng);
+        break;
+      case multi_point:
+        centroid_single(holding, multip, i, lat, lng);
+        break;
+      case multi_line_string:
+        centroid_single(holding, multil, i, lat, lng);
+        break;
+      case multi_polygon:
+        centroid_single(holding, multipoly, i, lat, lng);
+        break;
+      default:
+        lat[i] = NA_REAL;
+        lng[i] = NA_REAL;
+      }
     }
   }
 
