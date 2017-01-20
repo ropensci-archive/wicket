@@ -20,13 +20,16 @@ bounding_wkt_list <- function(x) {
 #'object. In the case that the object is NA (or cannot be decoded)
 #'the resulting values will also be NA
 #'
+#'@seealso \code{\link{wkt_coords}} to extract all coordinates, and
+#'\code{\link{wkt_bounding}} to extract a bounding box.
+#'
 #'@examples
-#'get_centroid("POLYGON((2 1.3,2.4 1.7))")
+#'wkt_centroid("POLYGON((2 1.3,2.4 1.7))")
 #'#  lat lng
 #'#1 1.3   2
 #'@export
-get_centroid <- function(wkt) {
-    .Call('wicket_get_centroid', PACKAGE = 'wicket', wkt)
+wkt_centroid <- function(wkt) {
+    .Call('wicket_wkt_centroid', PACKAGE = 'wicket', wkt)
 }
 
 sp_convert_ <- function(x, group) {
@@ -106,6 +109,9 @@ wkt_bounding <- function(wkt, as_matrix = FALSE) {
 #'#3      1 outer  40  20
 #'#4      1 outer  20  10
 #'#5      1 outer  10  30
+#'
+#'@seealso \code{\link{wkt_bounding}} to extract a bounding box,
+#'and \code{\link{wkt_centroid}} to extract the centroid.
 #'@export
 wkt_coords <- function(wkt) {
     .Call('wicket_wkt_coords', PACKAGE = 'wicket', wkt)

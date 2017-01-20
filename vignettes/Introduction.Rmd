@@ -92,22 +92,28 @@ sp_convert(x = sp_object, group = FALSE)
 
 ```
 
-## Coordinate extraction
+## Coordinate and centroid extraction
 WKT POLYGONs are often used to store latitude and longitude coordinates - and you can use `wkt_coords` to get them:
 
 ```{r, eval=FALSE}
 wkt_coords(("POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))"))
-# [[1]]
-#    lon lat
-# 1  30  10
-# 2  40  40
-# 3  20  40
-# 4  10  20
-# 5  30  10
+#   object  ring lat lng
+# 1      1 outer  10  30
+# 2      1 outer  40  40
+# 3      1 outer  40  20
+# 4      1 outer  20  10
+# 5      1 outer  10  30
 ```
 
-The result of a `wkt_coords` call is a list of data.frames - one for every WKT polygon you pass in - each containing
-a data.frame of `lon` and `lat` coordinates for each point within the polygon.
+The result of a `wkt_coords` call is a data.frame of four columns - `object`, identifying which of the input WKT objects the row refers to, `ring` referring to the layer in that object, and then `lat` and `lng`.
+
+Extracting centroids is also useful, and can be performed with `wkt_centroid`. Again,
+it's entirely vectorised and produces a data.frame:
+```{r, eval=FALSE}
+wkt_centroid(("POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))"))
+#       lat      lng
+# 1 26.9697 25.45455
+```
 
 ## New features and bugs
 

@@ -34,13 +34,16 @@ void centroid_single(std::string wkt, T& geom_obj,
 //'object. In the case that the object is NA (or cannot be decoded)
 //'the resulting values will also be NA
 //'
+//'@seealso \code{\link{wkt_coords}} to extract all coordinates, and
+//'\code{\link{wkt_bounding}} to extract a bounding box.
+//'
 //'@examples
-//'get_centroid("POLYGON((2 1.3,2.4 1.7))")
+//'wkt_centroid("POLYGON((2 1.3,2.4 1.7))")
 //'#  lat lng
 //'#1 1.3   2
 //'@export
 //[[Rcpp::export]]
-DataFrame get_centroid(CharacterVector wkt){
+DataFrame wkt_centroid(CharacterVector wkt){
 
   point_type pt;
   linestring_type ls;

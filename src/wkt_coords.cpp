@@ -88,6 +88,9 @@ void extract_coords(polygon_type& p, unsigned int& outsize,
 //'#3      1 outer  40  20
 //'#4      1 outer  20  10
 //'#5      1 outer  10  30
+//'
+//'@seealso \code{\link{wkt_bounding}} to extract a bounding box,
+//'and \code{\link{wkt_centroid}} to extract the centroid.
 //'@export
 //[[Rcpp::export]]
 DataFrame wkt_coords(CharacterVector wkt){

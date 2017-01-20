@@ -29,5 +29,10 @@ wkt_coords("POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))")
 #3      1 outer  40  20
 #4      1 outer  20  10
 #5      1 outer  10  30
+
+}
+\seealso{
+\code{\link{wkt_bounding}} to extract a bounding box,
+and \code{\link{wkt_centroid}} to extract the centroid.
 }
 
