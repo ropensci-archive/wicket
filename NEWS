@@ -1,0 +1,9 @@
+0.2.0
+=============
+* Centroid extraction made available through wkt_centroid
+* Coordinate extraction made available through wkt_coords
+
+0.1.0
+=============
+
+* Initial release
