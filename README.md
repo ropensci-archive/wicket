@@ -15,5 +15,5 @@ Please note that this project is released with a [Contributor Code of Conduct](h
 At the moment the package is only on GitHub (it's heading off to CRAN pretty soon!) and can be accessed with:
 
 ```
-devtools::install_github("ironholds/wicket")
+devtools::install_github("ropensci/wicket")
 ```

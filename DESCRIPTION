@@ -1,7 +1,8 @@
 Package: wicket
 Type: Package
 Title: Utilities to handle WKT ('Well-Known Text') spatial data
-Version: 0.1.0
+Version: 0.2.0
+Date: 2017-01-20
 Author: Oliver Keyes [aut, cre]
 Maintainer: Oliver Keyes <ironholds@gmail.com>
 Description: Utilities to generate bounding boxes from WKT objects and R data types, validate
@@ -19,3 +20,5 @@ Suggests: testthat,
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+URL: https://github.com/ropensci/wicket
+BugReports: https://github.com/ropensci/wicket/issues
