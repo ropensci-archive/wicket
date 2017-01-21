@@ -1,20 +1,19 @@
 Package: wicket
 Type: Package
-Title: Utilities to handle WKT ('Well-Known Text') spatial data
+Title: Utilities to Handle WKT Spatial Data
 Version: 0.2.0
 Date: 2017-01-20
 Author: Oliver Keyes [aut, cre]
 Maintainer: Oliver Keyes <ironholds@gmail.com>
-Description: Utilities to generate bounding boxes from WKT objects and R data types, validate
-             WKT objects and convert object types from the 'sp' package into WKT representations.
+Description: Utilities to generate bounding boxes from 'WKT' (Well-Known Text) objects and R data types, validate
+             'WKT' objects and convert object types from the 'sp' package into 'WKT' representations.
 License: MIT + file LICENSE
 LazyData: TRUE
 LinkingTo:
     Rcpp,
     BH
 Imports:
-    Rcpp,
-    BH
+    Rcpp
 RoxygenNote: 5.0.1
 Suggests: testthat,
     knitr,

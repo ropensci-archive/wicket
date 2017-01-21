@@ -12,8 +12,16 @@ Please note that this project is released with a [Contributor Code of Conduct](h
 
 ## Installation
 
-At the moment the package is only on GitHub (it's heading off to CRAN pretty soon!) and can be accessed with:
+The package can be installed via:
+
+```
+install.packages("wicket")
+```
+
+For the release version, and:
 
 ```
 devtools::install_github("ropensci/wicket")
 ```
+
+For the development version.
