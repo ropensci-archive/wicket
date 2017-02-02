@@ -21,8 +21,8 @@ in a WKT object (or vector of WKT objects).
 }
 \examples{
 wkt_centroid("POLYGON((2 1.3,2.4 1.7))")
-#  lat lng
-#1 1.3   2
+#  lng lat
+#1 2   1.3
 }
 \seealso{
 \code{\link{wkt_coords}} to extract all coordinates, and

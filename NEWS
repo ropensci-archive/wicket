@@ -1,3 +1,7 @@
+0.3.0 [WIP]
+=============
+* lat/lng output columns have been reversed in wkt_coords and wkt_centroid to match WKT structure (#15)
+
 0.2.0
 =============
 * Centroid extraction made available through wkt_centroid

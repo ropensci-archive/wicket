@@ -76,18 +76,16 @@ void extract_coords(polygon_type& p, unsigned int& outsize,
 //'
 //'@return a data.frame of four columns; \code{object} (containing which object
 //'the row refers to), \code{ring} containing which layer of the object the row
-//'refers to, \code{lat} and \code{lng}.
+//'refers to, \code{lng} and \code{lat}.
 //'
 //'@examples
 //'wkt_coords("POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))")
-//'#[[1]]
-//'#lon lat
-//'#  object  ring lat lng
-//'#1      1 outer  10  30
-//'#2      1 outer  40  40
-//'#3      1 outer  40  20
-//'#4      1 outer  20  10
-//'#5      1 outer  10  30
+//'object  ring lng lat
+//'1    1 outer  30  10
+//'2    1 outer  40  40
+//'3    1 outer  20  40
+//'4    1 outer  10  20
+//'5    1 outer  30  10
 //'
 //'@seealso \code{\link{wkt_bounding}} to extract a bounding box,
 //'and \code{\link{wkt_centroid}} to extract the centroid.
@@ -124,7 +122,7 @@ DataFrame wkt_coords(CharacterVector wkt){
 
   return DataFrame::create(_["object"] = object,
                            _["ring"] = ring,
-                           _["lat"] = lat,
                            _["lng"] = lng,
+                           _["lat"] = lat,
                            _["stringsAsFactors"] = false);
 }

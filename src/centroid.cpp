@@ -39,8 +39,8 @@ void centroid_single(std::string wkt, T& geom_obj,
 //'
 //'@examples
 //'wkt_centroid("POLYGON((2 1.3,2.4 1.7))")
-//'#  lat lng
-//'#1 1.3   2
+//'#  lng lat
+//'#1 2   1.3
 //'@export
 //[[Rcpp::export]]
 DataFrame wkt_centroid(CharacterVector wkt){
@@ -91,6 +91,6 @@ DataFrame wkt_centroid(CharacterVector wkt){
     }
   }
 
-  return DataFrame::create(_["lat"] = lat,
-                           _["lng"] = lng);
+  return DataFrame::create(_["lng"] = lng,
+                           _["lat"] = lat);
 }

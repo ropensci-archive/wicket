@@ -7,8 +7,8 @@ testthat::test_that("Coordinates can be extracted from valid polygons", {
   testthat::expect_equal(nrow(result), 5)
   testthat::expect_equal(result[1,1], 1)
   testthat::expect_equal(result[1,2], "outer")
-  testthat::expect_equal(result[1,4], 30)
-  testthat::expect_equal(result[1,3], 10)
+  testthat::expect_equal(result[1,3], 30)
+  testthat::expect_equal(result[1,4], 10)
 
 })
 
@@ -38,5 +38,5 @@ testthat::test_that("multi-layer polygons are handled correctly", {
   testthat::expect_equal(nrow(result), 4)
   testthat::expect_equal(result[1,1], 1)
   testthat::expect_equal(result[3,2], "inner 1")
-  testthat::expect_equal(result[3,3], 22.4)
+  testthat::expect_equal(result[3,4], 22.4)
 })
