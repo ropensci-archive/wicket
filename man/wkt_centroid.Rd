@@ -17,7 +17,8 @@ the resulting values will also be NA
 }
 \description{
 \code{get_centroid} identifies the 2D centroid
-in a WKT object (or vector of WKT objects).
+in a WKT object (or vector of WKT objects). Note that it assumes
+cartesian values.
 }
 \examples{
 wkt_centroid("POLYGON((2 1.3,2.4 1.7))")

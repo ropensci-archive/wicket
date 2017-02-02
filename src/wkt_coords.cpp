@@ -5,10 +5,10 @@ using namespace wkt_utils;
 //[[Rcpp::depends(BH)]]
 
 void get_coords_single(std::string& x,
-                       std::list<polygon_type>& output,
+                       std::list<s_polygon_type>& output,
                        unsigned int& out_size){
 
-  polygon_type p;
+  s_polygon_type p;
   try {
     boost::geometry::read_wkt(x, p);
   } catch (...){
@@ -28,7 +28,7 @@ void get_coords_single(std::string& x,
 }
 
 
-void extract_coords(polygon_type& p, unsigned int& outsize,
+void extract_coords(s_polygon_type& p, unsigned int& outsize,
                     IntegerVector& object,
                     CharacterVector& ring, NumericVector& lat,
                     NumericVector& lng, unsigned int obj){
@@ -40,7 +40,7 @@ void extract_coords(polygon_type& p, unsigned int& outsize,
     outsize++;
     return;
   }
-  std::vector < point_type > points = p.outer();
+  std::vector < s_point_type > points = p.outer();
   for(unsigned int i = 0; i < points.size(); i++){
     object[outsize] = obj;
     ring[outsize] = "outer";
@@ -51,7 +51,7 @@ void extract_coords(polygon_type& p, unsigned int& outsize,
 
   if(p.inners().size()){
     std::string ring_id;
-    polygon_type x;
+    s_polygon_type x;
     for(unsigned int i = 0; i < p.inners().size(); i++){
       boost::geometry::convert(p.inners()[i], x);
       ring_id = "inner " + make_string(i+1);
@@ -71,6 +71,9 @@ void extract_coords(polygon_type& p, unsigned int& outsize,
 //'@description \code{wkt_coords} extracts lat/long values from WKT polygons,
 //'specifically the outer shell of those polygons (working on the assumption that
 //'said outer edge is what you want).
+//'
+//'Because it assumes \emph{coordinates}, it also assumes a sphere - say, the earth -
+//'and uses spherical coordinate values.
 //'
 //'@param wkt a character vector of WKT objects
 //'
@@ -94,7 +97,7 @@ void extract_coords(polygon_type& p, unsigned int& outsize,
 DataFrame wkt_coords(CharacterVector wkt){
 
   unsigned int input_size = wkt.size();
-  std::list<polygon_type> holding;
+  std::list<s_polygon_type> holding;
   std::string str_holding;
   unsigned int n_size = 0;
 
@@ -110,10 +113,10 @@ DataFrame wkt_coords(CharacterVector wkt){
   CharacterVector ring(n_size);
   NumericVector   lat(n_size);
   NumericVector   lng(n_size);
-  polygon_type p;
+  s_polygon_type p;
   unsigned int outsize = 0;
   unsigned int obj = 1;
-  for(std::list<polygon_type>::const_iterator it = holding.begin(), end = holding.end();
+  for(std::list<s_polygon_type>::const_iterator it = holding.begin(), end = holding.end();
       it != end; ++it) {
     p = *it;
     extract_coords(p, outsize, object, ring, lat, lng, obj);

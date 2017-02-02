@@ -11,7 +11,8 @@ bounding_wkt_list <- function(x) {
 
 #'@title Extract Centroid
 #'@description \code{get_centroid} identifies the 2D centroid
-#'in a WKT object (or vector of WKT objects).
+#'in a WKT object (or vector of WKT objects). Note that it assumes
+#'cartesian values.
 #'
 #'@param wkt a character vector of WKT objects, represented as strings
 #'
@@ -92,6 +93,9 @@ wkt_bounding <- function(wkt, as_matrix = FALSE) {
 #'@description \code{wkt_coords} extracts lat/long values from WKT polygons,
 #'specifically the outer shell of those polygons (working on the assumption that
 #'said outer edge is what you want).
+#'
+#'Because it assumes \emph{coordinates}, it also assumes a sphere - say, the earth -
+#'and uses spherical coordinate values.
 #'
 #'@param wkt a character vector of WKT objects
 #'

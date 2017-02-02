@@ -18,6 +18,9 @@ refers to, \code{lng} and \code{lat}.
 \code{wkt_coords} extracts lat/long values from WKT polygons,
 specifically the outer shell of those polygons (working on the assumption that
 said outer edge is what you want).
+
+Because it assumes \emph{coordinates}, it also assumes a sphere - say, the earth -
+and uses spherical coordinate values.
 }
 \examples{
 wkt_coords("POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))")
