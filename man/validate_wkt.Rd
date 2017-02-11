@@ -32,4 +32,3 @@ validate_wkt(wkt)
 \code{\link{sp_convert}} for generating valid WKT objects from SpatialPolygons
 and SpatialPolygonDataFrames.
 }
-

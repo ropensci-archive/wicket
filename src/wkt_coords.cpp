@@ -83,12 +83,12 @@ void extract_coords(s_polygon_type& p, unsigned int& outsize,
 //'
 //'@examples
 //'wkt_coords("POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))")
-//'object  ring lng lat
-//'1    1 outer  30  10
-//'2    1 outer  40  40
-//'3    1 outer  20  40
-//'4    1 outer  10  20
-//'5    1 outer  30  10
+//'# object  ring lng lat
+//'# 1    1 outer  30  10
+//'# 2    1 outer  40  40
+//'# 3    1 outer  20  40
+//'# 4    1 outer  10  20
+//'# 5    1 outer  30  10
 //'
 //'@seealso \code{\link{wkt_bounding}} to extract a bounding box,
 //'and \code{\link{wkt_centroid}} to extract the centroid.

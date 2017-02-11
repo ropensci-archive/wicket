@@ -33,4 +33,3 @@ sp_convert(s1)
 \code{\link{bounding_wkt}}, for turning bounding boxes within \code{sp} objects
 into WKT objects.
 }
-

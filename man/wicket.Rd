@@ -4,6 +4,7 @@
 \name{wicket}
 \alias{wicket}
 \alias{wicket-package}
+\alias{wicket-package}
 \title{Well-Known Text utilities}
 \description{
 This package provides basic, standalone functions for WKT
@@ -15,4 +16,3 @@ manipulation, generation and validation, backed by C++ for improved speed.
 \code{\link{wkt_bounding}} and \code{\link{bounding_wkt}} for bounding box
 conversion in both directions.
 }
-

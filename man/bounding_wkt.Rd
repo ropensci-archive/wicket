@@ -39,4 +39,3 @@ bounding_wkt(values = list(c(10, 12, 14, 16)))
 \code{\link{wkt_bounding}}, to turn WKT objects of various types into
 a matrix or data.frame of bounding boxes.
 }
-

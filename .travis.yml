@@ -1,0 +1,15 @@
+language: r
+warnings_are_errors: false
+sudo: required
+
+env:
+ global:
+   - CRAN: http://cran.rstudio.com
+
+r_packages:
+   - rmarkdown
+   - testthat
+notifications:
+  email:
+    on_success: change
+on_failure: change
