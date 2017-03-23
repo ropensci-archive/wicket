@@ -7,7 +7,7 @@
 #' \code{\link{sp_convert}} for turning SP objects \emph{into} WKT, and
 #' \code{\link{wkt_bounding}} and \code{\link{bounding_wkt}} for bounding box
 #' conversion in both directions.
-#' @useDynLib wicket
+#' @useDynLib wicket, .registration = TRUE
 #' @importFrom Rcpp sourceCpp
 #' @docType package
 #' @aliases wicket wicket-package

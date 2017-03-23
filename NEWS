@@ -1,4 +1,4 @@
-0.3.0 [WIP]
+0.3.0
 =============
 * lat/lng output columns have been reversed in wkt_coords and wkt_centroid to match WKT structure (#15)
 * wkt_centroid now notes an implicit assumption that it is being passed cartesian values (#14)
