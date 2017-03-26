@@ -57,7 +57,7 @@ wkt <- c("POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))",
          "LINESTRING (30 10, 10 90, 40 out of cheese error redo universe from start)")
 validate_wkt(wkt)
 #   is_valid comments
-# 1     TRUE <NA>
+# 1    FALSE The WKT object has a different orientation from the default
 # 2    FALSE Object could not be recognised as a supported WKT type
 # 3    FALSE bad lexical cast: source type value could not be interpreted as target at 'out' in 'linestring (30 10, 10 90, 40 out of cheese error redo universe from start)'
 ```

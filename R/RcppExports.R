@@ -38,8 +38,8 @@ sp_convert_ <- function(x, group) {
 }
 
 #'@title Validate WKT objects
-#'@description \code{validate_wkt} takes a vector of WKT objects and validates that
-#'they are parsable, returning a data.frame containing the status of each entry and
+#'@description \code{validate_wkt} takes a vector of WKT objects and validates them,
+#'returning a data.frame containing the status of each entry and
 #'(in the case it cannot be parsed) any comments as to what, in particular, may be
 #'wrong with it. It does not, unfortunately, check whether the object meets the WKT
 #'spec - merely that it is formatted correctly.
@@ -47,8 +47,8 @@ sp_convert_ <- function(x, group) {
 #'@param x a character vector of WKT objects.
 #'
 #'@return a data.frame of two columns, \code{is_valid} (containing TRUE or FALSE values
-#'for whether the WKT object is parseable) and \code{comments} (containing any error messages
-#'in the case that the WKT object cannot be parsed). If the objects are simply NA,
+#'for whether the WKT object is parseable and valid) and \code{comments} (containing any error messages
+#'in the case that the WKT object is not). If the objects are simply NA,
 #'both fields will contain NA.
 #'
 #'@seealso \code{\link{sp_convert}} for generating valid WKT objects from SpatialPolygons

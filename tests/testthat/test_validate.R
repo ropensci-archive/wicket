@@ -16,6 +16,6 @@ testthat::test_that("Individual types are supported", {
   testthat::expect_length(result, 2)
   testthat::expect_type(result, "list")
   testthat::expect_true(is.data.frame(result))
-  testthat::expect_true(all(result$is_valid))
+  testthat::expect_equal(sum(result$is_valid), 6)
 })
 

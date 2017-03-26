@@ -3,10 +3,56 @@
 using namespace wkt_utils;
 using namespace Rcpp;
 
+String validity_comments(boost::geometry::validity_failure_type x){
+  if(x == boost::geometry::no_failure){
+    return NA_STRING;
+  }
+  if(x == boost::geometry::failure_few_points){
+    return "The WKT object has too few points for its type";
+  }
+  if(x == boost::geometry::failure_wrong_topological_dimension){
+    return "The WKT object has a topological dimension too small for its dimensions";
+  }
+  if(x == boost::geometry::failure_spikes){
+    return "The WKT object contains spikes";
+  }
+  if(x == boost::geometry::failure_duplicate_points){
+    return "The WKT object has consecutive duplicate points";
+  }
+  if(x == boost::geometry::failure_not_closed){
+    return "The WKT object is closed but does not have matching start/end points";
+  }
+  if(x == boost::geometry::failure_self_intersections){
+    return "The WKT object has invalid self-intersections";
+  }
+  if(x == boost::geometry::failure_wrong_orientation){
+    return "The WKT object has a different orientation from the default";
+  }
+  if(x == boost::geometry::failure_interior_rings_outside){
+    return "The WKT object has interior rings sitting outside its exterior ring";
+  }
+  if(x == boost::geometry::failure_nested_interior_rings){
+    return "The WKT object has nested interior rings";
+  }
+  if(x == boost::geometry::failure_disconnected_interior){
+    return "The interior of the WKT object is disconnected";
+  }
+  if(x == boost::geometry::failure_intersecting_interiors){
+    return "The WKT object has interior rings that intersect";
+  }
+  if(x == boost::geometry::failure_wrong_corner_order){
+    return "The WKT object, a box, has corners in the wrong order";
+  }
+  return NA_STRING;
+}
+
 template <typename T>
 inline void validate_single(std::string& x, unsigned int& i, CharacterVector& com, LogicalVector& valid, T& p){
+  boost::geometry::validity_failure_type failure;
   try {
     boost::geometry::read_wkt(x, p);
+    valid[i] = boost::geometry::is_valid(p, failure);
+    com[i] = validity_comments(failure);
   } catch (boost::geometry::read_wkt_exception &e){
     com[i] = e.what();
     valid[i] = false;
@@ -92,8 +138,8 @@ void validate_gc(std::string& x, unsigned int& i_sup, CharacterVector& com, Logi
 }
 
 //'@title Validate WKT objects
-//'@description \code{validate_wkt} takes a vector of WKT objects and validates that
-//'they are parsable, returning a data.frame containing the status of each entry and
+//'@description \code{validate_wkt} takes a vector of WKT objects and validates them,
+//'returning a data.frame containing the status of each entry and
 //'(in the case it cannot be parsed) any comments as to what, in particular, may be
 //'wrong with it. It does not, unfortunately, check whether the object meets the WKT
 //'spec - merely that it is formatted correctly.
@@ -101,8 +147,8 @@ void validate_gc(std::string& x, unsigned int& i_sup, CharacterVector& com, Logi
 //'@param x a character vector of WKT objects.
 //'
 //'@return a data.frame of two columns, \code{is_valid} (containing TRUE or FALSE values
-//'for whether the WKT object is parseable) and \code{comments} (containing any error messages
-//'in the case that the WKT object cannot be parsed). If the objects are simply NA,
+//'for whether the WKT object is parseable and valid) and \code{comments} (containing any error messages
+//'in the case that the WKT object is not). If the objects are simply NA,
 //'both fields will contain NA.
 //'
 //'@seealso \code{\link{sp_convert}} for generating valid WKT objects from SpatialPolygons

@@ -1,3 +1,7 @@
+0.4.0 [WIP]
+=============
+* is_valid now has enhanced validity checks
+
 0.3.0
 =============
 * lat/lng output columns have been reversed in wkt_coords and wkt_centroid to match WKT structure (#15)
