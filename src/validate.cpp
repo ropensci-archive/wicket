@@ -152,7 +152,8 @@ void validate_gc(std::string& x, unsigned int& i_sup, CharacterVector& com, Logi
 //'both fields will contain NA.
 //'
 //'@seealso \code{\link{sp_convert}} for generating valid WKT objects from SpatialPolygons
-//'and SpatialPolygonDataFrames.
+//'and SpatialPolygonDataFrames, or \code{\link{wkt_correct}} for correcting WKT objects
+//'that fail validity checks due to having a non-default orientation.
 //'
 //'@examples
 //'wkt <- c("POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))",

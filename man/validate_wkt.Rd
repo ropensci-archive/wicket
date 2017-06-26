@@ -11,13 +11,13 @@ validate_wkt(x)
 }
 \value{
 a data.frame of two columns, \code{is_valid} (containing TRUE or FALSE values
-for whether the WKT object is parseable) and \code{comments} (containing any error messages
-in the case that the WKT object cannot be parsed). If the objects are simply NA,
+for whether the WKT object is parseable and valid) and \code{comments} (containing any error messages
+in the case that the WKT object is not). If the objects are simply NA,
 both fields will contain NA.
 }
 \description{
-\code{validate_wkt} takes a vector of WKT objects and validates that
-they are parsable, returning a data.frame containing the status of each entry and
+\code{validate_wkt} takes a vector of WKT objects and validates them,
+returning a data.frame containing the status of each entry and
 (in the case it cannot be parsed) any comments as to what, in particular, may be
 wrong with it. It does not, unfortunately, check whether the object meets the WKT
 spec - merely that it is formatted correctly.
@@ -31,5 +31,6 @@ validate_wkt(wkt)
 }
 \seealso{
 \code{\link{sp_convert}} for generating valid WKT objects from SpatialPolygons
-and SpatialPolygonDataFrames.
+and SpatialPolygonDataFrames, or \code{\link{wkt_correct}} for correcting WKT objects
+that fail validity checks due to having a non-default orientation.
 }

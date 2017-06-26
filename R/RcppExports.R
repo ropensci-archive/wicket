@@ -2,11 +2,11 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 bounding_wkt_points <- function(min_x, max_x, min_y, max_y) {
-    .Call('wicket_bounding_wkt_points', PACKAGE = 'wicket', min_x, max_x, min_y, max_y)
+    .Call(wicket_bounding_wkt_points, min_x, max_x, min_y, max_y)
 }
 
 bounding_wkt_list <- function(x) {
-    .Call('wicket_bounding_wkt_list', PACKAGE = 'wicket', x)
+    .Call(wicket_bounding_wkt_list, x)
 }
 
 #'@title Extract Centroid
@@ -30,11 +30,11 @@ bounding_wkt_list <- function(x) {
 #'#1 2   1.3
 #'@export
 wkt_centroid <- function(wkt) {
-    .Call('wicket_wkt_centroid', PACKAGE = 'wicket', wkt)
+    .Call(wicket_wkt_centroid, wkt)
 }
 
 sp_convert_ <- function(x, group) {
-    .Call('wicket_sp_convert_', PACKAGE = 'wicket', x, group)
+    .Call(wicket_sp_convert_, x, group)
 }
 
 #'@title Validate WKT objects
@@ -52,7 +52,8 @@ sp_convert_ <- function(x, group) {
 #'both fields will contain NA.
 #'
 #'@seealso \code{\link{sp_convert}} for generating valid WKT objects from SpatialPolygons
-#'and SpatialPolygonDataFrames.
+#'and SpatialPolygonDataFrames, or \code{\link{wkt_correct}} for correcting WKT objects
+#'that fail validity checks due to having a non-default orientation.
 #'
 #'@examples
 #'wkt <- c("POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))",
@@ -62,7 +63,7 @@ sp_convert_ <- function(x, group) {
 #'
 #'@export
 validate_wkt <- function(x) {
-    .Call('wicket_validate_wkt', PACKAGE = 'wicket', x)
+    .Call(wicket_validate_wkt, x)
 }
 
 #'@title Convert WKT Objects into Bounding Boxes
@@ -87,7 +88,7 @@ validate_wkt <- function(x) {
 #'
 #'@export
 wkt_bounding <- function(wkt, as_matrix = FALSE) {
-    .Call('wicket_wkt_bounding', PACKAGE = 'wicket', wkt, as_matrix)
+    .Call(wicket_wkt_bounding, wkt, as_matrix)
 }
 
 #'@title Extract Latitude and Longitude from WKT polygons
@@ -117,6 +118,34 @@ wkt_bounding <- function(wkt, as_matrix = FALSE) {
 #'and \code{\link{wkt_centroid}} to extract the centroid.
 #'@export
 wkt_coords <- function(wkt) {
-    .Call('wicket_wkt_coords', PACKAGE = 'wicket', wkt)
+    .Call(wicket_wkt_coords, wkt)
+}
+
+#'@title Correct Incorrectly Oriented WKT Objects
+#'@description \code{wkt_correct} does precisely what it says on the tin,
+#'correcting the orientation of WKT objects that are improperly oriented
+#'(say, back to front). It can be applied to WKT objects that,
+#'when validated with \code{\link{validate_wkt}}, fail for that reason.
+#'
+#'@param x a character vector of WKT objects to correct
+#'
+#'@return a character vector, the same length as \code{x}, containing
+#'either the original value (if there was no correction to make, or if
+#'the object was invalid for other reasons) or the corrected WKT
+#'value.
+#'
+#'@examples
+#'
+#'# A WKT object
+#'wkt <- "POLYGON((30 20, 10 40, 45 40, 30 20), (15 5, 5 10, 10 20, 40 10, 15 5))"
+#'
+#'# That's invalid due to a non-default orientation
+#'validate_wkt(wkt)
+#'
+#'# And suddenly isn't!
+#'wkt_correct(wkt)
+#'@export
+wkt_correct <- function(x) {
+    .Call(wicket_wkt_correct, x)
 }
 

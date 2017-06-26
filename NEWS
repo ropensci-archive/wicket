@@ -1,6 +1,8 @@
 0.4.0 [WIP]
 =============
 * is_valid now has enhanced validity checks
+* The function wkt_correct has been introduced to allow the correction of reversed WKT objects
+* Miscellaneous documentation improvements
 
 0.3.0
 =============
