@@ -26,7 +26,7 @@ String validity_comments(boost::geometry::validity_failure_type x){
     return "The WKT object has invalid self-intersections";
   }
   if(x == boost::geometry::failure_wrong_orientation){
-    return "The WKT object has a different orientation from the default";
+    return "The WKT object has a different orientation from the default. Use ?wkt_correct to fix.";
   }
   if(x == boost::geometry::failure_interior_rings_outside){
     return "The WKT object has interior rings sitting outside its exterior ring";
