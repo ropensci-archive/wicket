@@ -2,11 +2,11 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 bounding_wkt_points <- function(min_x, max_x, min_y, max_y) {
-    .Call(wicket_bounding_wkt_points, min_x, max_x, min_y, max_y)
+    .Call(`_wicket_bounding_wkt_points`, min_x, max_x, min_y, max_y)
 }
 
 bounding_wkt_list <- function(x) {
-    .Call(wicket_bounding_wkt_list, x)
+    .Call(`_wicket_bounding_wkt_list`, x)
 }
 
 #'@title Extract Centroid
@@ -30,11 +30,11 @@ bounding_wkt_list <- function(x) {
 #'#1 2   1.3
 #'@export
 wkt_centroid <- function(wkt) {
-    .Call(wicket_wkt_centroid, wkt)
+    .Call(`_wicket_wkt_centroid`, wkt)
 }
 
 sp_convert_ <- function(x, group) {
-    .Call(wicket_sp_convert_, x, group)
+    .Call(`_wicket_sp_convert_`, x, group)
 }
 
 #'@title Validate WKT objects
@@ -63,7 +63,7 @@ sp_convert_ <- function(x, group) {
 #'
 #'@export
 validate_wkt <- function(x) {
-    .Call(wicket_validate_wkt, x)
+    .Call(`_wicket_validate_wkt`, x)
 }
 
 #'@title Convert WKT Objects into Bounding Boxes
@@ -88,7 +88,7 @@ validate_wkt <- function(x) {
 #'
 #'@export
 wkt_bounding <- function(wkt, as_matrix = FALSE) {
-    .Call(wicket_wkt_bounding, wkt, as_matrix)
+    .Call(`_wicket_wkt_bounding`, wkt, as_matrix)
 }
 
 #'@title Extract Latitude and Longitude from WKT polygons
@@ -118,7 +118,7 @@ wkt_bounding <- function(wkt, as_matrix = FALSE) {
 #'and \code{\link{wkt_centroid}} to extract the centroid.
 #'@export
 wkt_coords <- function(wkt) {
-    .Call(wicket_wkt_coords, wkt)
+    .Call(`_wicket_wkt_coords`, wkt)
 }
 
 #'@title Correct Incorrectly Oriented WKT Objects
@@ -146,6 +146,6 @@ wkt_coords <- function(wkt) {
 #'wkt_correct(wkt)
 #'@export
 wkt_correct <- function(x) {
-    .Call(wicket_wkt_correct, x)
+    .Call(`_wicket_wkt_correct`, x)
 }
 

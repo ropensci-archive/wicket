@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // bounding_wkt_points
 CharacterVector bounding_wkt_points(NumericVector min_x, NumericVector max_x, NumericVector min_y, NumericVector max_y);
-RcppExport SEXP wicket_bounding_wkt_points(SEXP min_xSEXP, SEXP max_xSEXP, SEXP min_ySEXP, SEXP max_ySEXP) {
+RcppExport SEXP _wicket_bounding_wkt_points(SEXP min_xSEXP, SEXP max_xSEXP, SEXP min_ySEXP, SEXP max_ySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -21,7 +21,7 @@ END_RCPP
 }
 // bounding_wkt_list
 CharacterVector bounding_wkt_list(List x);
-RcppExport SEXP wicket_bounding_wkt_list(SEXP xSEXP) {
+RcppExport SEXP _wicket_bounding_wkt_list(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -32,7 +32,7 @@ END_RCPP
 }
 // wkt_centroid
 DataFrame wkt_centroid(CharacterVector wkt);
-RcppExport SEXP wicket_wkt_centroid(SEXP wktSEXP) {
+RcppExport SEXP _wicket_wkt_centroid(SEXP wktSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -43,7 +43,7 @@ END_RCPP
 }
 // sp_convert_
 SEXP sp_convert_(List x, bool group);
-RcppExport SEXP wicket_sp_convert_(SEXP xSEXP, SEXP groupSEXP) {
+RcppExport SEXP _wicket_sp_convert_(SEXP xSEXP, SEXP groupSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -55,7 +55,7 @@ END_RCPP
 }
 // validate_wkt
 DataFrame validate_wkt(CharacterVector x);
-RcppExport SEXP wicket_validate_wkt(SEXP xSEXP) {
+RcppExport SEXP _wicket_validate_wkt(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -66,7 +66,7 @@ END_RCPP
 }
 // wkt_bounding
 SEXP wkt_bounding(CharacterVector wkt, bool as_matrix);
-RcppExport SEXP wicket_wkt_bounding(SEXP wktSEXP, SEXP as_matrixSEXP) {
+RcppExport SEXP _wicket_wkt_bounding(SEXP wktSEXP, SEXP as_matrixSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -78,7 +78,7 @@ END_RCPP
 }
 // wkt_coords
 DataFrame wkt_coords(CharacterVector wkt);
-RcppExport SEXP wicket_wkt_coords(SEXP wktSEXP) {
+RcppExport SEXP _wicket_wkt_coords(SEXP wktSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -89,7 +89,7 @@ END_RCPP
 }
 // wkt_correct
 CharacterVector wkt_correct(CharacterVector x);
-RcppExport SEXP wicket_wkt_correct(SEXP xSEXP) {
+RcppExport SEXP _wicket_wkt_correct(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -97,4 +97,21 @@ BEGIN_RCPP
     rcpp_result_gen = Rcpp::wrap(wkt_correct(x));
     return rcpp_result_gen;
 END_RCPP
+}
+
+static const R_CallMethodDef CallEntries[] = {
+    {"_wicket_bounding_wkt_points", (DL_FUNC) &_wicket_bounding_wkt_points, 4},
+    {"_wicket_bounding_wkt_list", (DL_FUNC) &_wicket_bounding_wkt_list, 1},
+    {"_wicket_wkt_centroid", (DL_FUNC) &_wicket_wkt_centroid, 1},
+    {"_wicket_sp_convert_", (DL_FUNC) &_wicket_sp_convert_, 2},
+    {"_wicket_validate_wkt", (DL_FUNC) &_wicket_validate_wkt, 1},
+    {"_wicket_wkt_bounding", (DL_FUNC) &_wicket_wkt_bounding, 2},
+    {"_wicket_wkt_coords", (DL_FUNC) &_wicket_wkt_coords, 1},
+    {"_wicket_wkt_correct", (DL_FUNC) &_wicket_wkt_correct, 1},
+    {NULL, NULL, 0}
+};
+
+RcppExport void R_init_wicket(DllInfo *dll) {
+    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+    R_useDynamicSymbols(dll, FALSE);
 }

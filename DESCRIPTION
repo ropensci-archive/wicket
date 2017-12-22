@@ -1,8 +1,8 @@
 Package: wicket
 Type: Package
 Title: Utilities to Handle WKT Spatial Data
-Version: 0.4.000000
-Date: 2017-06-25
+Version: 0.4.0
+Date: 2017-11-18
 Author: Oliver Keyes [aut, cre]
 Maintainer: Oliver Keyes <ironholds@gmail.com>
 Description: Utilities to generate bounding boxes from 'WKT' (Well-Known Text) objects and R data types, validate
