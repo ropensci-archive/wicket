@@ -1,5 +1,8 @@
 # WKT utilities in R
-[![Travis-CI Build Status](https://travis-ci.org/ropensci/wicket.svg?branch=master)](https://travis-ci.org/ropensci/wicket) ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/wicket)
+[![Travis-CI Build Status](https://travis-ci.org/ropensci/wicket.svg?branch=master)](https://travis-ci.org/ropensci/wicket) 
+![downloads](http://cranlogs.r-pkg.org/badges/wicket)
+[![cran checks](https://cranchecks.info/badges/worst/wicket)](https://cranchecks.info/pkgs/wicket)
+[![cran version](https://www.r-pkg.org/badges/version/wicket)](https://cran.r-project.org/package=wicket)
 
 `wicket` is a little package to make handling Well-Known Text (WKT) data easier in R, letting you easily:
 
