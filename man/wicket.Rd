@@ -4,7 +4,6 @@
 \name{wicket}
 \alias{wicket}
 \alias{wicket-package}
-\alias{wicket-package}
 \title{Well-Known Text utilities}
 \description{
 This package provides basic, standalone functions for WKT

@@ -1,8 +1,7 @@
 Package: wicket
 Type: Package
 Title: Utilities to Handle WKT Spatial Data
-Version: 0.4.0
-Date: 2017-11-18
+Version: 0.4.1
 Author: Oliver Keyes [aut, cre]
 Maintainer: Oliver Keyes <ironholds@gmail.com>
 Description: Utilities to generate bounding boxes from 'WKT' (Well-Known Text) objects and R data types, validate
@@ -14,7 +13,8 @@ LinkingTo:
     BH
 Imports:
     Rcpp
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
+Encoding: UTF-8
 Suggests: testthat,
     knitr,
     rmarkdown
