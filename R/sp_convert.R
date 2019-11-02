@@ -14,18 +14,19 @@ get_coords_sf <- function(sf_single){
 #' (SpatialPolygons, SpatialPolygonDataFrames) or the \pkg{sf} package
 #' (sf, sfc, POLYGON, MULTIPOLYGON) - into WKT POLYGONs or MULTIPOLYGONs
 #'
-#' @param x a list of SP/SPDF objects (or a single object), OR an sf, sfc,
-#' POLYGON, or MULTIPOLYGON sf object
+#' @param x for `sp_convert()`, a list of SP/SPDF objects (or a single object)
+#' for `sf_convert()`, an sf, sfc, POLYGON, or MULTIPOLYGON sf object
 #'
-#' @param group whether or not to group coordinates together in the case that an object
-#' in \code{x} has multiple sets of coordinates. If TRUE (the default), such objects will
-#' be returned as \code{MULTIPOLYGON}s - if FALSE, as a vector of \code{POLYGON}s.
+#' @param group whether or not to group coordinates together in the case
+#' that an object in \code{x} has multiple sets of coordinates. If TRUE
+#' (the default), such objects will be returned as \code{MULTIPOLYGON}s
+#' - if FALSE, as a vector of \code{POLYGON}s.
 #'
-#' @return either a character vector of WKT objects - one per sp object - if \code{group} is TRUE,
-#' or a list of vectors if \code{group} is FALSE.
+#' @return either a character vector of WKT objects - one per sp object -
+#' if \code{group} is TRUE, or a list of vectors if \code{group} is FALSE
 #'
-#' @seealso \code{\link{bounding_wkt}}, for turning bounding boxes within \code{sp} objects
-#' into WKT objects.
+#' @seealso \code{\link{bounding_wkt}}, for turning bounding boxes within
+#' \code{sp} objects into WKT objects.
 #'
 #' @examples \dontrun{
 #' library(sp)

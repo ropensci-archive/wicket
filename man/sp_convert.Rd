@@ -3,27 +3,29 @@
 \name{sp_convert}
 \alias{sp_convert}
 \alias{sf_convert}
-\title{Convert SpatialPolygons or SpatialPolygonDataFrames into WKT objects}
+\title{Convert spatial objects to WKT}
 \usage{
 sp_convert(x, group = TRUE)
 
 sf_convert(x, group = TRUE)
 }
 \arguments{
-\item{x}{a list of SP/SPDF objects (or a single object)}
+\item{x}{for `sp_convert()`, a list of SP/SPDF objects (or a single object)
+for `sf_convert()`, an sf, sfc, POLYGON, or MULTIPOLYGON sf object}
 
-\item{group}{whether or not to group coordinates together in the case that an object
-in \code{x} has multiple sets of coordinates. If TRUE (the default), such objects will
-be returned as \code{MULTIPOLYGON}s - if FALSE, as a vector of \code{POLYGON}s.}
+\item{group}{whether or not to group coordinates together in the case
+that an object in \code{x} has multiple sets of coordinates. If TRUE
+(the default), such objects will be returned as \code{MULTIPOLYGON}s
+- if FALSE, as a vector of \code{POLYGON}s.}
 }
 \value{
-either a character vector of WKT objects - one per sp object - if \code{group} is TRUE,
-or a list of vectors if \code{group} is FALSE.
+either a character vector of WKT objects - one per sp object -
+if \code{group} is TRUE, or a list of vectors if \code{group} is FALSE
 }
 \description{
-\code{sp_convert} turns objects from the \code{sp} package -
-specifically, SpatialPolygons and SpatialPolygonDataFrames - into WKT POLYGONs
-or MULTIPOLYGONs
+\code{sp_convert} turns objects from the \pkg{sp} package
+(SpatialPolygons, SpatialPolygonDataFrames) or the \pkg{sf} package
+(sf, sfc, POLYGON, MULTIPOLYGON) - into WKT POLYGONs or MULTIPOLYGONs
 }
 \examples{
 \dontrun{
@@ -59,6 +61,6 @@ sf_convert(x)
 }
 }
 \seealso{
-\code{\link{bounding_wkt}}, for turning bounding boxes within \code{sp} objects
-into WKT objects.
+\code{\link{bounding_wkt}}, for turning bounding boxes within
+\code{sp} objects into WKT objects.
 }
