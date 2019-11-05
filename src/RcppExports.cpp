@@ -41,6 +41,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// wkt_reverse
+CharacterVector wkt_reverse(CharacterVector x);
+RcppExport SEXP _wicket_wkt_reverse(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< CharacterVector >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(wkt_reverse(x));
+    return rcpp_result_gen;
+END_RCPP
+}
 // sp_convert_
 SEXP sp_convert_(List x, bool group);
 RcppExport SEXP _wicket_sp_convert_(SEXP xSEXP, SEXP groupSEXP) {
@@ -103,6 +114,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_wicket_bounding_wkt_points", (DL_FUNC) &_wicket_bounding_wkt_points, 4},
     {"_wicket_bounding_wkt_list", (DL_FUNC) &_wicket_bounding_wkt_list, 1},
     {"_wicket_wkt_centroid", (DL_FUNC) &_wicket_wkt_centroid, 1},
+    {"_wicket_wkt_reverse", (DL_FUNC) &_wicket_wkt_reverse, 1},
     {"_wicket_sp_convert_", (DL_FUNC) &_wicket_sp_convert_, 2},
     {"_wicket_validate_wkt", (DL_FUNC) &_wicket_validate_wkt, 1},
     {"_wicket_wkt_bounding", (DL_FUNC) &_wicket_wkt_bounding, 2},
