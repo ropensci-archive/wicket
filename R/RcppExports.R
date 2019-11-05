@@ -33,6 +33,22 @@ wkt_centroid <- function(wkt) {
     .Call(`_wicket_wkt_centroid`, wkt)
 }
 
+#'@title Reverses the points within a geometry.
+#'@description \code{wkt_reverse} reverses the points in any of
+#'point, multipoint, linestring, multilinestring, polygon, or
+#'multipolygon
+#'@param x a character vector of WKT objects, represented as strings
+#'@return a string, same length as given
+#'@details segment, box, and ring types not supported
+#'@references
+#'https://www.boost.org/doc/libs/1_67_0/libs/geometry/doc/html/geometry/reference/algorithms/reverse.html
+#'@examples
+#'wkt_reverse("POLYGON((42 -26,42 -13,52 -13,52 -26,42 -26))")
+#'@export
+wkt_reverse <- function(x) {
+    .Call(`_wicket_wkt_reverse`, x)
+}
+
 sp_convert_ <- function(x, group) {
     .Call(`_wicket_sp_convert_`, x, group)
 }
