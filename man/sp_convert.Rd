@@ -2,34 +2,65 @@
 % Please edit documentation in R/sp_convert.R
 \name{sp_convert}
 \alias{sp_convert}
-\title{Convert SpatialPolygons or SpatialPolygonDataFrames into WKT objects}
+\alias{sf_convert}
+\title{Convert spatial objects to WKT}
 \usage{
 sp_convert(x, group = TRUE)
+
+sf_convert(x, group = TRUE)
 }
 \arguments{
-\item{x}{a list of SP/SPDF objects (or a single object)}
+\item{x}{for `sp_convert()`, a list of SP/SPDF objects (or a single object)
+for `sf_convert()`, an sf, sfc, POLYGON, or MULTIPOLYGON sf object}
 
-\item{group}{whether or not to group coordinates together in the case that an object
-in \code{x} has multiple sets of coordinates. If TRUE (the default), such objects will
-be returned as \code{MULTIPOLYGON}s - if FALSE, as a vector of \code{POLYGON}s.}
+\item{group}{whether or not to group coordinates together in the case
+that an object in \code{x} has multiple sets of coordinates. If TRUE
+(the default), such objects will be returned as \code{MULTIPOLYGON}s
+- if FALSE, as a vector of \code{POLYGON}s.}
 }
 \value{
-either a character vector of WKT objects - one per sp object - if \code{group} is TRUE,
-or a list of vectors if \code{group} is FALSE.
+either a character vector of WKT objects - one per sp object -
+if \code{group} is TRUE, or a list of vectors if \code{group} is FALSE
 }
 \description{
-\code{sp_convert} turns objects from the \code{sp} package -
-specifically, SpatialPolygons and SpatialPolygonDataFrames - into WKT POLYGONs
-or MULTIPOLYGONs
+\code{sp_convert} turns objects from the \pkg{sp} package
+(SpatialPolygons, SpatialPolygonDataFrames) or the \pkg{sf} package
+(sf, sfc, POLYGON, MULTIPOLYGON) - into WKT POLYGONs or MULTIPOLYGONs
 }
 \examples{
 \dontrun{
 library(sp)
+library(sf)
 s1 <- SpatialPolygons(list(Polygons(list(Polygon(cbind(c(2,4,4,1,2),c(2,3,5,4,2)))), "s1")))
 sp_convert(s1)
+x = st_as_sf(s1)
+sf_convert(x)
+
+library(sf)
+one = Polygon(cbind(c(91,90,90,91), c(30,30,32,30)))
+two = Polygon(cbind(c(94,92,92,94), c(40,40,42,40)))
+spone = Polygons(list(one), "s1")
+sptwo = Polygons(list(two), "s2")
+z = SpatialPolygons(list(spone, sptwo), as.integer(1:2))
+x = st_as_sf(z)
+sp_convert(z)
+# class: sf
+sf_convert(x)
+# class: sfc
+sf_convert(x = x[[1]])
+# class: polygon
+sf_convert(x = unclass(x[[1]])[[1]])
+sf_convert(x = unclass(x[[1]])[[2]])
+
+library(silicate)
+x <- sfzoo$multipolygon
+class(x)
+x_sp <- as(x, "Spatial")
+sp_convert(x_sp)
+sf_convert(x)
 }
 }
 \seealso{
-\code{\link{bounding_wkt}}, for turning bounding boxes within \code{sp} objects
-into WKT objects.
+\code{\link{bounding_wkt}}, for turning bounding boxes within
+\code{sp} objects into WKT objects.
 }
