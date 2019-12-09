@@ -19,5 +19,5 @@ Suggests: testthat,
     knitr,
     rmarkdown
 VignetteBuilder: knitr
-URL: https://github.com/ropensci/wicket
+URL: https://docs.ropensci.org/wicket, https://github.com/ropensci/wicket
 BugReports: https://github.com/ropensci/wicket/issues
